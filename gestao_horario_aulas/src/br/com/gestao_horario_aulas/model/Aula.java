@@ -1,12 +1,17 @@
 package br.com.gestao_horario_aulas.model;
 
 public class Aula {
+	private Integer id;
 	private Materia materia;
 	private Professor professor;
 	private Sala sala;
 	private Integer dia;
 	private Integer horario;
-
+	
+	public Integer getId() {
+		return this.id;
+	}
+	
 	public Materia getMateria() {
 		return materia;
 	}
@@ -45,6 +50,12 @@ public class Aula {
 
 	public void setHorario(Integer horario) {
 		this.horario = horario;
+	}
+	
+	@Override
+	public boolean equals(Object arg0) {
+		Aula outra = (Aula) arg0; 
+		return this.getId().equals(outra.getId());
 	}
 
 }

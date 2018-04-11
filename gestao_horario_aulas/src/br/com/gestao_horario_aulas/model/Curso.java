@@ -19,4 +19,10 @@ public class Curso {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
+	@Override
+	public boolean equals(Object arg0) {
+		Curso outra = (Curso) arg0; 
+		return this.getId().equals(outra.getId());
+	}
 }
