@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Bem vindo</title>
+<title>Seleção de Semestre</title>
 <!--Import Google Icon Font-->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
@@ -18,7 +18,7 @@
 <body>
 	<jsp:useBean id="coordenador" scope="session"
 		class="br.com.gestao_horario_aulas.model.Coordenador"></jsp:useBean>
-
+		
 	<nav>
 	<div style="background: #3a3a3a;" class="nav-wrapper">
 		<img style="height: 100%; margin-left: 25px; margin-right: 25px;"
