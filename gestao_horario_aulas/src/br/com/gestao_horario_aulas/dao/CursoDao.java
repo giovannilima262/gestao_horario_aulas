@@ -17,23 +17,23 @@ public class CursoDao {
 	}
 
 	public Curso findById(Integer id) {
-		Curso Curso = null;
+		Curso curso = null;
 		for (Curso c : this.cursos) {
-			if (Curso.getId().equals(id)) {
-				Curso = c;
+			if (c.getId().equals(id)) {
+				curso = c;
 			}
 		}
-		return Curso;
+		return curso;
 	}
 
 	public Curso findByNome(String nome) {
-		Curso Curso = null;
+		Curso curso = null;
 		for (Curso c : this.cursos) {
 			if (c.getNome().equals(nome)) {
-				Curso = c;
+				curso = c;
 			}
 		}
-		return Curso;
+		return curso;
 	}
 
 	public void delete(Integer id) {

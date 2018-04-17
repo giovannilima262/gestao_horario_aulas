@@ -3,7 +3,16 @@ package br.com.gestao_horario_aulas.model;
 public class Curso {
 	private Integer id;
 	private String nome;
-
+	private Coordenador coordenador;
+			
+	public Coordenador getCurso() {
+		return coordenador;
+	}
+	
+	public void setCoordenador(Coordenador coordenador) {
+		this.coordenador = coordenador;
+	}
+	
 	public Integer getId() {
 		return id;
 	}

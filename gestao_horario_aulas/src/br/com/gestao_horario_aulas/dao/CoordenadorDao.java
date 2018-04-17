@@ -18,13 +18,12 @@ public class CoordenadorDao {
 	}
 
 	public Coordenador findById(Integer id) {
-		Coordenador coordenador = null;
 		for (Coordenador c : this.coordenadores) {
-			if (coordenador.getId().equals(id)) {
-				coordenador = c;
+			if (c.getId().equals(id)) {
+				return c;
 			}
 		}
-		return coordenador;
+		return null;
 	}
 
 	public Coordenador findByNome(String nome) {
@@ -37,15 +36,6 @@ public class CoordenadorDao {
 		return coordenador;
 	}
 
-	public Coordenador findByCurso(Integer idCurso) {
-		Coordenador coordenador = null;
-		for (Coordenador a : this.coordenadores) {
-			if (coordenador.getCurso().getId().equals(idCurso)) {
-				coordenador = a;
-			}
-		}
-		return coordenador;
-	}
 
 	public void delete(Integer id) {
 		for (Coordenador c : this.coordenadores) {
@@ -63,7 +53,7 @@ public class CoordenadorDao {
 			coordenador.setNome(user);
 			Curso curso = new Curso();
 			curso.setNome("Engenharia de Software");
-			coordenador.setCurso(curso);
+			curso.setCoordenador(coordenador);
 		}
 		return coordenador;
 	}
