@@ -37,6 +37,13 @@
 		%>
 	</div>
 	</nav>
+	<nav style="background: #3a3a3a;">
+	<div class="nav-wrapper" style="margin-left: 50px;">
+		<div class="col s12">
+			<a href="selecao_curso.jsp" class="breadcrumb">Inicio</a>
+		</div>
+	</div>
+	</nav>
 	<h3 style="margin-left: 80px;" class="header">Cursos</h3>
 	<div class="row" style="width: 90%;">
 		<div class="col s12 m2">

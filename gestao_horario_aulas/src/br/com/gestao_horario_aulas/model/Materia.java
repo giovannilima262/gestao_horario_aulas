@@ -6,7 +6,22 @@ public class Materia {
 	private Curso curso;
 	private Integer semestre;
 	private Professor professor;
-
+	
+	public Materia() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	//FIXME Temporario até a existi um banco
+	public Materia(String nome) {
+		this.nome = nome;
+	}
+	
+	//FIXME Temporario até a existi um banco
+	@Override
+	public String toString() {
+		return this.nome;
+	}
+	
 	public Integer getId() {
 		return this.id;
 	}

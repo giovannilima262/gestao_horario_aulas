@@ -7,11 +7,15 @@ public class Aula {
 	private Sala sala;
 	private Integer dia;
 	private Integer horario;
-	
+
+	public Aula(Materia materia) {
+		this.materia = materia;
+	}
+
 	public Integer getId() {
 		return this.id;
 	}
-	
+
 	public Materia getMateria() {
 		return materia;
 	}
@@ -51,10 +55,10 @@ public class Aula {
 	public void setHorario(Integer horario) {
 		this.horario = horario;
 	}
-	
+
 	@Override
 	public boolean equals(Object arg0) {
-		Aula outra = (Aula) arg0; 
+		Aula outra = (Aula) arg0;
 		return this.getId().equals(outra.getId());
 	}
 

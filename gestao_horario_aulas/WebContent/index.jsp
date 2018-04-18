@@ -25,20 +25,22 @@
 	</div>
 	</nav>
 	<h3 style="margin-left: 80px;" class="header">Forma de Acesso</h3>
-	<p>Eu não consigo centralizar sapo***</p>
-	<div class="row" style="position: absolute">
-		<div class="col s12 m2 center-align" style="width: 100%; ">
-			<div class="card blue-grey darken-1">
-		        <div class="card-content white-text" >
-			        <span class="card-title">Seleção</span>
-			        <p>Selecione de que forma acessar</p>
-		        </div>
-		        <div class="card-action">
-			        <a href="./telas/selecao_curso.jsp">Aluno</a>
-			        <a href="./telas/login.jsp">Coordenador</a>
-		        </div>
+	<div
+		style="width: 100%; display: flex; justify-content: center; margin-top: 97px;">
+		<div class="row" style="position: absolute">
+			<div class="col s12 m2 center-align" style="width: 100%;">
+				<div class="card blue-grey darken-1">
+					<div class="card-content white-text">
+						<span class="card-title">Seleção</span>
+						<p>Selecione de que forma acessar</p>
+					</div>
+					<div class="card-action">
+						<a href="./telas/selecao_curso.jsp">Aluno</a> <a
+							href="./telas/login.jsp">Coordenador</a>
+					</div>
+				</div>
 			</div>
-	    </div>
+		</div>
 	</div>
 	<!--JavaScript at end of body for optimized loading-->
 	<script type="text/javascript"

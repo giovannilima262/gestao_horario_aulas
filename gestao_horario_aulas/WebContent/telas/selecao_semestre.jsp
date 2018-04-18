@@ -18,7 +18,7 @@
 <body>
 	<jsp:useBean id="coordenador" scope="session"
 		class="br.com.gestao_horario_aulas.model.Coordenador"></jsp:useBean>
-		
+
 	<nav>
 	<div style="background: #3a3a3a;" class="nav-wrapper">
 		<img style="height: 100%; margin-left: 25px; margin-right: 25px;"
@@ -35,6 +35,15 @@
 		<%
 			}
 		%>
+	</div>
+	</nav>
+	<nav style="background: #3a3a3a;">
+	<div class="nav-wrapper" style="margin-left: 50px;">
+		<div class="col s12">
+			<a href="selecao_curso.jsp" class="breadcrumb">Inicio</a><a
+				href="selecao_semestre.jsp" class="breadcrumb">Seleção Semestre</a>
+
+		</div>
 	</div>
 	</nav>
 	<h3 style="margin-left: 80px;" class="header">Semestres</h3>
