@@ -1,0 +1,31 @@
+CREATE DATABASE GerenciadorAulas;
+
+CREATE TABLE coordenador (id SERIAL PRIMARY KEY,
+                         nome VARCHAR(100) NOT NULL);
+                         
+CREATE TABLE curso (id SERIAL PRIMARY KEY,
+                    nome VARCHAR(100) NOT NULL,
+                    id_coordenador INT REFERENCES coordenador(id) NOT NULL);
+                    
+CREATE TABLE professor (id SERIAL PRIMARY KEY,
+                        cpf VARCHAR(11) NOT NULL,
+                        nome VARCHAR(100));
+                        
+CREATE TABLE materia (id SERIAL PRIMARY KEY, 
+                      nome VARCHAR(100) NOT NULL,
+                      id_curso INT REFERENCES curso(id) NOT NULL,
+                      semestre INT NOT NULL,
+                      id_professor INT REFERENCES professor(id) NOT NULL);
+                      
+CREATE TABLE sala (id SERIAL PRIMARY KEY,
+                   bloco VARCHAR(100) NOT NULL,
+                   nome VARCHAR(5) NOT NULL,
+                   tipo_sala INT NOT NULL,
+                   CHECK (tipo_sala IN(1,2,3)));      
+                   
+CREATE TABLE aula (id SERIAL PRIMARY KEY,
+                   id_materia INT REFERENCES materia(id) NOT NULL,
+                   id_professor INT REFERENCES professor(id) NOT NULL,
+                   id_sala INT REFERENCES sala(id) NOT NULL,
+                   dia INT NOT NULL,
+                   horario INT NOT NULL);
