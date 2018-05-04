@@ -4,7 +4,7 @@ public class Curso {
 	private Integer id;
 	private String nome;
 	private Coordenador coordenador;
-			
+	// TODO Adicionar numero de semestres do curso.
 	public Coordenador getCurso() {
 		return coordenador;
 	}
