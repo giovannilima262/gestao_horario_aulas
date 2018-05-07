@@ -4,10 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gestao_horario_aulas.model.Sala;
+import br.com.gestao_horario_aulas.util.Conexao;
 import br.com.gestao_horario_aulas.enums.TipoSalaEnum;
 
 public class SalaDao {
 	private List<Sala> salas = new ArrayList<>();
+
+	private Conexao conexao;
+
+	public SalaDao() {
+		this.conexao = Conexao.getConexao();
+	}
+
+	public void close() {
+		conexao.closeConnection();
+	}
 
 	public void insert(Sala aula) {
 		salas.add(aula);
@@ -36,7 +47,7 @@ public class SalaDao {
 		}
 		return salas;
 	}
-	
+
 	public ArrayList<Sala> findByTipo(TipoSalaEnum Tipo) {
 		ArrayList<Sala> salas = new ArrayList<>();
 		for (Sala s : this.salas) {

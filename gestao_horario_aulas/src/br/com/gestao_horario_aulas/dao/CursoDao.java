@@ -4,9 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gestao_horario_aulas.model.Curso;
+import br.com.gestao_horario_aulas.util.Conexao;
 
 public class CursoDao {
 	private List<Curso> cursos = new ArrayList<>();
+
+	private Conexao conexao;
+
+	public CursoDao() {
+		this.conexao = Conexao.getConexao();
+	}
+
+	public void close() {
+		conexao.closeConnection();
+	}
 
 	public void insert(Curso curso) {
 		cursos.add(curso);

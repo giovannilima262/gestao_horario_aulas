@@ -4,9 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gestao_horario_aulas.model.Materia;
+import br.com.gestao_horario_aulas.util.Conexao;
 
 public class MateriaDao {
 	private List<Materia> materias = new ArrayList<>();
+
+	private Conexao conexao;
+
+	public MateriaDao() {
+		this.conexao = Conexao.getConexao();
+	}
+
+	public void close() {
+		conexao.closeConnection();
+	}
 
 	public void insert(Materia aula) {
 		materias.add(aula);
@@ -35,7 +46,7 @@ public class MateriaDao {
 		}
 		return materia;
 	}
-	
+
 	public ArrayList<Materia> findByCurso(Integer cursoId) {
 		ArrayList<Materia> materias = new ArrayList<>();
 		for (Materia m : this.materias) {
@@ -45,7 +56,7 @@ public class MateriaDao {
 		}
 		return materias;
 	}
-	
+
 	public ArrayList<Materia> findBySemestre(Integer semestre) {
 		ArrayList<Materia> materias = new ArrayList<>();
 		for (Materia m : this.materias) {

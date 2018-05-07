@@ -5,10 +5,21 @@ import java.util.List;
 
 import br.com.gestao_horario_aulas.model.Coordenador;
 import br.com.gestao_horario_aulas.model.Curso;
+import br.com.gestao_horario_aulas.util.Conexao;
 
 public class CoordenadorDao {
 	private List<Coordenador> coordenadores = new ArrayList<>();
 
+	private Conexao conexao;
+
+	public CoordenadorDao() {
+		this.conexao = Conexao.getConexao();
+	}
+
+	public void close() {
+		conexao.closeConnection();
+	}
+	
 	public void insert(Coordenador coordenador) {
 		coordenadores.add(coordenador);
 	}
