@@ -1,4 +1,4 @@
-CREATE DATABASE GerenciadorAulas;
+CREATE DATABASE gerenciador_aulas;
 
 CREATE TABLE coordenador (id SERIAL PRIMARY KEY,
                          nome VARCHAR(100) NOT NULL);
