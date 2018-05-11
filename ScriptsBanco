@@ -13,12 +13,11 @@ CREATE TABLE professor (id SERIAL PRIMARY KEY,
                         
  CREATE TABLE disciplina (id SERIAL PRIMARY KEY, 
                       nome VARCHAR(100) NOT NULL,
-                      id_curso INT REFERENCES curso(id) NOT NULL,
                       semestre INT NOT NULL);
                       
-CREATE TABLE disciplina_curso (id SERIAL PRIMARY KEY, 
+CREATE TABLE disciplina_grade (id SERIAL PRIMARY KEY, 
                       id_disciplina INT REFERENCES disciplina(id) NOT NULL,
-                      id_curso INT REFERENCES curso(id) NOT NULL);                        
+                      id_grade INT REFERENCES grade(id) NOT NULL);                        
                         
 CREATE TABLE professor_disciplina (id SERIAL PRIMARY KEY, 
                       id_professor INT REFERENCES professor(id) NOT NULL,
@@ -35,3 +34,13 @@ CREATE TABLE aula (id SERIAL PRIMARY KEY,
                    id_sala INT REFERENCES sala(id) NOT NULL,
                    dia_semana INT NOT NULL,
                    horario INT NOT NULL);
+                   
+CREATE TABLE disciplina_pre_requsito (id SERIAL PRIMARY KEY,
+                                      id_disciplina INT REFERENCES disciplina(id) NOT NULL,
+                                      id_disciplina_requisito INT REFERENCES disciplina(id) NOT NULL);
+
+CREATE TABLE grade (id SERIAL PRIMARY KEY,
+                    id_curso INT REFERENCES curso(id) NOT NULL,
+                    ano_semestre_ini VARCHAR(6) NOT NULL,
+                    ano_semestre_fim VARCHAR(6) NOT NULL);
+                                      
