@@ -4,11 +4,15 @@ public class Professor {
 	private Integer id;
 	private String cpf;
 	private String nome;
-	
+
 	public Integer getId() {
 		return this.id;
 	}
-	
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public String getNome() {
 		return nome;
 	}
@@ -24,10 +28,10 @@ public class Professor {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-	
+
 	@Override
 	public boolean equals(Object arg0) {
-		Professor outra = (Professor) arg0; 
+		Professor outra = (Professor) arg0;
 		return this.getId().equals(outra.getId());
 	}
 }

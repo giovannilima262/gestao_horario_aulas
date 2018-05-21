@@ -1,5 +1,8 @@
 package br.com.gestao_horario_aulas.dao;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +11,6 @@ import br.com.gestao_horario_aulas.model.Curso;
 import br.com.gestao_horario_aulas.util.Conexao;
 
 public class CoordenadorDao {
-	private List<Coordenador> coordenadores = new ArrayList<>();
 
 	private Conexao conexao;
 
@@ -19,40 +21,72 @@ public class CoordenadorDao {
 	public void close() {
 		conexao.closeConnection();
 	}
-	
+
 	public void insert(Coordenador coordenador) {
-		coordenadores.add(coordenador);
+		try (PreparedStatement stmt = conexao.getConnection()
+				.prepareStatement("INSERT INTO coordenador (nome) VALUES (?);");) {
+			stmt.setString(1, coordenador.getNome());
+			stmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} 
 	}
 
 	public ArrayList<Coordenador> getLista() {
-		return (ArrayList<Coordenador>) this.coordenadores;
+		List<Coordenador> coordenadores = new ArrayList<>();
+		try (PreparedStatement stmt = conexao.getConnection().prepareStatement("SELECT * FROM coordenador;");
+				ResultSet rs = stmt.executeQuery()) {
+			Coordenador coordenador = new Coordenador();
+			while (rs.next()) {
+				coordenador.setId(rs.getInt("id"));
+				coordenador.setNome(rs.getString("nome"));
+				coordenadores.add(coordenador);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return (ArrayList<Coordenador>) coordenadores;
 	}
 
 	public Coordenador findById(Integer id) {
-		for (Coordenador c : this.coordenadores) {
-			if (c.getId().equals(id)) {
-				return c;
+		Coordenador coordenador = new Coordenador();
+		try (PreparedStatement stmt = conexao.getConnection()
+				.prepareStatement("SELECT * FROM coordenador WHERE id = " + id +";"); ResultSet rs = stmt.executeQuery()) {
+			while (rs.next()) {
+				coordenador.setId(rs.getInt("id"));
+				coordenador.setNome(rs.getString("nome"));
 			}
-		}
-		return null;
-	}
-
-	public Coordenador findByNome(String nome) {
-		Coordenador coordenador = null;
-		for (Coordenador c : this.coordenadores) {
-			if (c.getNome().equals(nome)) {
-				coordenador = c;
-			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return coordenador;
 	}
 
+	public ArrayList<Coordenador> findByNome(String nome) {
+		List<Coordenador> coordenadores = new ArrayList<>();
+		try (PreparedStatement stmt = conexao.getConnection().prepareStatement("SELECT * FROM coordenador WHERE nome = '"+nome+"' ;");
+				ResultSet rs = stmt.executeQuery()) {
+			while (rs.next()) {
+				Coordenador coordenador = new Coordenador();
+				coordenador.setId(rs.getInt("id"));
+				coordenador.setNome(rs.getString("nome"));
+				coordenadores.add(coordenador);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			conexao.getConnection();
+		}
+		return (ArrayList<Coordenador>) coordenadores;
+	}
 
 	public void delete(Integer id) {
-		for (Coordenador c : this.coordenadores) {
-			if (c.getId().equals(id)) {
-				this.coordenadores.remove(c);
-			}
+		try (PreparedStatement stmt = conexao.getConnection().prepareStatement("DELETE FROM coordenador WHERE id = "+id+";");) {
+			stmt.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 

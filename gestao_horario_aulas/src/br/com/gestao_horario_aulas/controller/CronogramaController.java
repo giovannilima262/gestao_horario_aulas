@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.gestao_horario_aulas.model.Aula;
-import br.com.gestao_horario_aulas.model.Materia;
+import br.com.gestao_horario_aulas.model.Disciplina;
 
 /**
  * Servlet implementation class CronogramaController
@@ -36,20 +36,20 @@ public class CronogramaController extends HttpServlet {
 	private List<Aula> buscarAulas(String semestre) {
 		List<Aula> aulas = new ArrayList<>();
 		if (semestre.equals("1")) {
-			aulas.add(new Aula(new Materia("Iniciação a Vida Universitária")));
-			aulas.add(new Aula(new Materia("Inglês Técnico")));
-			aulas.add(new Aula(new Materia("Comunicação e Explessão")));
-			aulas.add(new Aula(new Materia("Arquitetura e Organização de Computadores")));
-			aulas.add(new Aula(new Materia("Introdução a Engenharia de Software")));
-			aulas.add(new Aula(new Materia("Lógica de Programação e Algoritmos")));
+			aulas.add(new Aula(new Disciplina("Iniciação a Vida Universitária")));
+			aulas.add(new Aula(new Disciplina("Inglês Técnico")));
+			aulas.add(new Aula(new Disciplina("Comunicação e Explessão")));
+			aulas.add(new Aula(new Disciplina("Arquitetura e Organização de Computadores")));
+			aulas.add(new Aula(new Disciplina("Introdução a Engenharia de Software")));
+			aulas.add(new Aula(new Disciplina("Lógica de Programação e Algoritmos")));
 
 		} else {
-			aulas.add(new Aula(new Materia("")));
-			aulas.add(new Aula(new Materia("")));
-			aulas.add(new Aula(new Materia("")));
-			aulas.add(new Aula(new Materia("")));
-			aulas.add(new Aula(new Materia("")));
-			aulas.add(new Aula(new Materia("")));
+			aulas.add(new Aula(new Disciplina("")));
+			aulas.add(new Aula(new Disciplina("")));
+			aulas.add(new Aula(new Disciplina("")));
+			aulas.add(new Aula(new Disciplina("")));
+			aulas.add(new Aula(new Disciplina("")));
+			aulas.add(new Aula(new Disciplina("")));
 		}
 		return aulas;
 	}

@@ -2,25 +2,33 @@ package br.com.gestao_horario_aulas.model;
 
 public class Aula {
 	private Integer id;
-	private Materia materia;
+	private Disciplina materia;
 	private Professor professor;
 	private Sala sala;
 	private Integer dia;
 	private Integer horario;
 
-	public Aula(Materia materia) {
+	public Aula(Disciplina materia) {
 		this.materia = materia;
+	}
+	
+	public Aula() {
+		
 	}
 
 	public Integer getId() {
 		return this.id;
 	}
+	
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-	public Materia getMateria() {
+	public Disciplina getMateria() {
 		return materia;
 	}
 
-	public void setMateria(Materia materia) {
+	public void setMateria(Disciplina materia) {
 		this.materia = materia;
 	}
 
