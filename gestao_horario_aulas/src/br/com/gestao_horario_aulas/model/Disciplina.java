@@ -7,7 +7,6 @@ public class Disciplina {
 	private String nome;
 	private Grade grade;
 	private Integer semestre;
-	private Professor professor;
 	private List<Disciplina> preRequisitos;
 
 	public Disciplina() {
@@ -66,14 +65,6 @@ public class Disciplina {
 
 	public void setSemestre(Integer semestre) {
 		this.semestre = semestre;
-	}
-
-	public Professor getProfessor() {
-		return this.professor;
-	}
-
-	public void setProfessor(Professor professor) {
-		this.professor = professor;
 	}
 
 	@Override

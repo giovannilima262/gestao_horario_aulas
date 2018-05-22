@@ -2,14 +2,14 @@ package br.com.gestao_horario_aulas.model;
 
 public class Aula {
 	private Integer id;
-	private Disciplina materia;
+	private Disciplina disciplina;
 	private Professor professor;
 	private Sala sala;
 	private Integer dia;
 	private Integer horario;
 
 	public Aula(Disciplina materia) {
-		this.materia = materia;
+		this.disciplina = materia;
 	}
 	
 	public Aula() {
@@ -24,12 +24,12 @@ public class Aula {
 		this.id = id;
 	}
 
-	public Disciplina getMateria() {
-		return materia;
+	public Disciplina getDisciplina() {
+		return disciplina;
 	}
 
-	public void setMateria(Disciplina materia) {
-		this.materia = materia;
+	public void setDisciplina(Disciplina disciplina) {
+		this.disciplina = disciplina;
 	}
 
 	public Professor getProfessor() {
