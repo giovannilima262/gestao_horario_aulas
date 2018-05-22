@@ -6,12 +6,12 @@ import java.util.List;
 import br.com.gestao_horario_aulas.model.Disciplina;
 import br.com.gestao_horario_aulas.util.Conexao;
 
-public class MateriaDao {
+public class DisciplinaDao {
 	private List<Disciplina> materias = new ArrayList<>();
 
 	private Conexao conexao;
 
-	public MateriaDao() {
+	public DisciplinaDao() {
 		this.conexao = Conexao.getConexao();
 	}
 

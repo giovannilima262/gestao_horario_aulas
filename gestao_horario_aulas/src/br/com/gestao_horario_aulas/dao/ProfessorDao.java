@@ -1,5 +1,8 @@
 package br.com.gestao_horario_aulas.dao;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +10,6 @@ import br.com.gestao_horario_aulas.model.Professor;
 import br.com.gestao_horario_aulas.util.Conexao;
 
 public class ProfessorDao {
-	private List<Professor> professores = new ArrayList<>();
 
 	private Conexao conexao;
 
@@ -20,38 +22,77 @@ public class ProfessorDao {
 	}
 
 	public void insert(Professor professor) {
-		professores.add(professor);
+		try (PreparedStatement stmt = conexao.getConnection()
+				.prepareStatement("INSERT INTO coordenador (nome, cpf) VALUES (?,?);");) {
+			stmt.setString(1, professor.getNome());
+			stmt.setString(2, professor.getCpf());
+			stmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public ArrayList<Professor> getLista() {
-		return (ArrayList<Professor>) this.professores;
+		List<Professor> professores = new ArrayList<>();
+		try (PreparedStatement stmt = conexao.getConnection().prepareStatement("SELECT * FROM professor;");
+				ResultSet rs = stmt.executeQuery()) {
+			Professor professor = new Professor();
+			while (rs.next()) {
+				professor.setId(rs.getInt("id"));
+				professor.setNome(rs.getString("nome"));
+				professor.setCpf(rs.getString("cpf"));
+				professores.add(professor);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return (ArrayList<Professor>) professores;
+
 	}
 
 	public Professor findById(Integer id) {
-		Professor professor = null;
-		for (Professor p : this.professores) {
-			if (professor.getId().equals(id)) {
-				professor = p;
+		Professor professor = new Professor();
+		try (PreparedStatement stmt = conexao.getConnection()
+				.prepareStatement("SELECT * FROM professor WHERE id = " + id + ";");
+				ResultSet rs = stmt.executeQuery()) {
+			while (rs.next()) {
+				professor.setId(rs.getInt("id"));
+				professor.setNome(rs.getString("nome"));
+				professor.setNome(rs.getString("cpf"));
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return professor;
 	}
 
-	public Professor findByNome(String nome) {
-		Professor professor = null;
-		for (Professor p : this.professores) {
-			if (p.getNome().equals(nome)) {
-				professor = p;
+	public List<Professor> findByNome(String nome) {
+		List<Professor> professores = new ArrayList<>();
+		try (PreparedStatement stmt = conexao.getConnection()
+				.prepareStatement("SELECT * FROM professor WHERE nome = '" + nome + "' ;");
+				ResultSet rs = stmt.executeQuery()) {
+			while (rs.next()) {
+				Professor professor = new Professor();
+				professor.setId(rs.getInt("id"));
+				professor.setNome(rs.getString("nome"));
+				professor.setNome(rs.getString("cpf"));
+				professores.add(professor);
 			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			conexao.getConnection();
 		}
-		return professor;
+		return (ArrayList<Professor>) professores;
 	}
 
 	public void delete(Integer id) {
-		for (Professor p : this.professores) {
-			if (p.getId().equals(id)) {
-				this.professores.remove(p);
-			}
+		try (PreparedStatement stmt = conexao.getConnection().prepareStatement("DELETE FROM professor WHERE id = "+id+";");) {
+			stmt.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 

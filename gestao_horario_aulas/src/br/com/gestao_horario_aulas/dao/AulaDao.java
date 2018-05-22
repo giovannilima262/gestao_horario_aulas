@@ -39,22 +39,20 @@ public class AulaDao {
 			}
 			if(id!=0){
 			stmt.setInt(4, id);
-			stmt.execute();
-			conexao.closeConnection();}
+			stmt.execute();}
 		} catch (SQLException e) {
 			new RuntimeException(e);
 		}
 	}
 
 	public ArrayList<Aula> getLista() {
-		
 		try(PreparedStatement stmt = conexao.getConnection().prepareStatement("SELECT * FROM aula");
 				ResultSet rs = stmt.executeQuery();) {
-			Aula au = new Aula();
+			Aula aula = new Aula();
 			while(rs.next()) {
-				au.setDia(rs.getInt("dia_semana"));
-				au.setHorario(rs.getInt("horario"));
-				au.setId(rs.getInt("id"));
+				aula.setDia(rs.getInt("dia_semana"));
+				aula.setHorario(rs.getInt("horario"));
+				aula.setId(rs.getInt("id"));
 			}
 			
 		} catch (SQLException e) {
@@ -92,12 +90,12 @@ public class AulaDao {
 		}
 		return aulas;
 	}
-
+	
 	public void delete(Integer id) {
-		for (Aula a : this.aulas) {
-			if (a.getId().equals(id)) {
-				this.aulas.remove(a);
-			}
+		try (PreparedStatement stmt = conexao.getConnection().prepareStatement("DELETE FROM aula WHERE id = "+id+";");) {
+			stmt.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 }
