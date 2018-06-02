@@ -13,7 +13,7 @@ import br.com.gestao_horario_aulas.model.Coordenador;
 /**
  * Servlet implementation class LoginController
  */
-@WebServlet("/login")
+@WebServlet("/telas/login")
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -30,10 +30,10 @@ public class LoginController extends HttpServlet {
 		Coordenador coordenador = coordenadorDao.obterCoordenador(user, senha);
 		if (coordenador != null) {
 			request.getSession().setAttribute("coordenador", coordenador);
-			response.sendRedirect("./telas/selecao_curso.jsp");
+			response.sendRedirect("./coordenador/cronogramaCoordenador.jsp");
 		} else {
 			request.setAttribute("mensagem", "Usuário ou Senha Inválidos!");
-			request.getRequestDispatcher("./telas/selecao_curso.jsp").forward(request, response);
+			request.getRequestDispatcher("./login.jsp").forward(request, response);
 		}
 	}
 

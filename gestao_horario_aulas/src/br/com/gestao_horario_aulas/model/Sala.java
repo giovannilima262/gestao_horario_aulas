@@ -7,15 +7,23 @@ public class Sala {
 	private String bloco;
 	private String nome;
 	private TipoSalaEnum tipoSala;
-	
+
+	public Sala(String bloco, String nome, String tipo) {
+		this.bloco = bloco;
+		this.nome = nome;
+		this.tipoSala = TipoSalaEnum.getSalaEnum(tipo);
+	}
+
+	public Sala() {}
+
 	public Integer getId() {
 		return this.id;
 	}
-	
+
 	public void setId(int id) {
-		this.id =id;
+		this.id = id;
 	}
-	
+
 	public String getBloco() {
 		return bloco;
 	}
@@ -39,10 +47,10 @@ public class Sala {
 	public void setTipoSala(TipoSalaEnum tipoSala) {
 		this.tipoSala = tipoSala;
 	}
-	
+
 	@Override
 	public boolean equals(Object arg0) {
-		Sala outra = (Sala) arg0; 
+		Sala outra = (Sala) arg0;
 		return this.getId().equals(outra.getId());
 	}
 }

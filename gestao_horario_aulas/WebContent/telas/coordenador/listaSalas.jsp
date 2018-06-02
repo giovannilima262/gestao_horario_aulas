@@ -1,18 +1,17 @@
-<%@page import="br.com.gestao_horario_aulas.model.Aula"%>
-<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Cronograma</title>
+<title>Lista de Salas</title>
 <!--Import Google Icon Font-->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 <!--Import materialize.css-->
 <link type="text/css" rel="stylesheet"
-	href="../materialize/css/materialize.min.css" media="screen,projection" />
+	href="../../materialize/css/materialize.min.css"
+	media="screen,projection" />
 
 <!--Let browser know website is optimized for mobile-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -20,17 +19,7 @@
 <body>
 	<jsp:useBean id="coordenador" scope="session"
 		class="br.com.gestao_horario_aulas.model.Coordenador"></jsp:useBean>
-	<%
-		String semestre = request.getParameter("semestre");
-		if (semestre == null) {
-			response.sendRedirect("selecao_semestre.jsp");
-		}
 
-		List<Aula> aulas = (List) request.getAttribute("aulas");
-		if (aulas == null) {
-			request.getRequestDispatcher("../cronograma").forward(request, response);
-		} else {
-	%>
 	<nav>
 	<div style="background: #3a3a3a;" class="nav-wrapper">
 		<img style="height: 100%; margin-left: 25px; margin-right: 25px;"
@@ -51,11 +40,14 @@
 	</nav>
 	<nav style="background: #3a3a3a;">
 	<div class="nav-wrapper" style="margin-left: 50px;">
-		<div class="col s12">
-			<a href="selecao_curso.jsp" class="breadcrumb">Inicio</a><a
-				href="selecao_semestre.jsp" class="breadcrumb">Seleção Semestre</a>
-			<a href="#!" class="breadcrumb"><%=semestre%>º Semestre</a>
-		</div>
+		<ul class="left hide-on-med-and-down">
+			<li><a href="cronogramaCoordenador.jsp">Início</a></li>
+			<li><a href="listaSalas.jsp">Sala</a></li>
+			<li><a href="listaDisciplinas.jsp">Disciplina</a></li>
+			<li><a href="">Professor</a></li>
+			<li><a href="">Grade</a></li>
+			<li><a href="">Horários</a></li>
+		</ul>
 	</div>
 	</nav>
 
@@ -63,45 +55,42 @@
 		<div class="fc-toolbar">
 
 			<div class="fc-center">
-				<h2><%=request.getParameter("semestre")%>º Semestre
-				</h2>
+				<h2>Salas</h2>
 			</div>
 		</div>
 		<div>
-			<table>
-				<tr>
-					<td><div>
-							<table>
-								<tr>
-									<th>Horário</th>
-									<th>Sábado</th>
-									<th>Segunda-Feira</th>
-									<th>Terça-Feira</th>
-									<th>Quarta-Feira</th>
-									<th>Quinta-Feira</th>
-									<th>Sexta-Feira</th>
-								</tr>
+			<div class="row">
+				<button class="btn waves-effect waves-light" name="action">
+					<a style="color: white" href="sala.jsp">Inserir</a>
+				</button>
+			</div>
+			<div>
+				<table>
+					<tr>
+						<td><div>
+								<table>
+									<tr>
+										<th>Nome</th>
+										<th>Bloco</th>
+										<th>Tipo da Sala</th>
+										<th></th>
+										<th></th>
+									</tr>
 
-							</table>
-						</div></td>
-				</tr>
-			</table>
+								</table>
+							</div></td>
+					</tr>
+				</table>
+			</div>
 		</div>
-		<%
-			if (coordenador.getNome() != null) {
-		%>
-		<div class="row">
-			<button style="float: right; width: 150px; height: 45px;"
-				class="btn waves-effect waves-light" type="submit" name="action">Salvar</button>
-		</div>
-		<%
-			}
-			}
-		%>
+
+
 	</div>
+
 
 	<!--JavaScript at end of body for optimized loading-->
 	<script type="text/javascript"
-		src="../materialize/js/materialize.min.js"></script>
+		src="../../materialize/js/materialize.min.js"></script>
+
 </body>
 </html>

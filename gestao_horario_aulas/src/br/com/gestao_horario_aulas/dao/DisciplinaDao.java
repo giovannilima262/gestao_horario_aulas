@@ -46,16 +46,16 @@ public class DisciplinaDao {
 		}
 		return materia;
 	}
-
-	public ArrayList<Disciplina> findByCurso(Integer cursoId) {
-		ArrayList<Disciplina> materias = new ArrayList<>();
-		for (Disciplina m : this.materias) {
-			if (m.getCurso().getId().equals(cursoId)) {
-				materias.add(m);
-			}
-		}
-		return materias;
-	}
+//
+//	public ArrayList<Disciplina> findByCurso(Integer cursoId) {
+//		ArrayList<Disciplina> materias = new ArrayList<>();
+//		for (Disciplina m : this.materias) {
+//			if (m.getCurso().getId().equals(cursoId)) {
+//				materias.add(m);
+//			}
+//		}
+//		return materias;
+//	}
 
 	public ArrayList<Disciplina> findBySemestre(Integer semestre) {
 		ArrayList<Disciplina> materias = new ArrayList<>();

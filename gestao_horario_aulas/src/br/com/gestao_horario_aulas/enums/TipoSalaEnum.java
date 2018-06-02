@@ -1,16 +1,23 @@
 package br.com.gestao_horario_aulas.enums;
 
 public enum TipoSalaEnum {
-	LAMI(1, "Lami"),
-	SALA(2, "Sala"),
-	AUDITORIO(3, "Auditório");
-	
+	LAMI(1, "Lami"), SALA(2, "Sala"), AUDITORIO(3, "Auditório");
+
 	private int codigo;
 	private String descricao;
-	
+
 	TipoSalaEnum(int codigo, String descricao) {
 		this.codigo = codigo;
-		this.descricao = descricao;	
+		this.descricao = descricao;
+	}
+
+	public static TipoSalaEnum getSalaEnum(String cod) {
+		for (TipoSalaEnum tipo : TipoSalaEnum.values()) {
+			if (Integer.parseInt(cod) == tipo.getCodigo()) {
+				return tipo;
+			}
+		}
+		return null;
 	}
 
 	public int getCodigo() {

@@ -20,7 +20,7 @@
 	<div
 		style="position: absolute; top: 50%; left: 50%; transform: translate(-25%, -50%); width: 800px;">
 		<div class="row">
-			<form class="col s12" action="../login" method="POST">
+			<form class="col s12" action="login" method="POST">
 				<div class="row">
 					<div class="input-field col s6">
 						<input name="usuario" id="first_name" type="text" class="validate"> <label

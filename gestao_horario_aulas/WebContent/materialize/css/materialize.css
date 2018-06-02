@@ -2767,6 +2767,12 @@ img.responsive-img, video.responsive-video {
 	color: rgba(255, 255, 255, 0.7);
 }
 
+.breadcrumbblack {
+	background: #3a3a3a;
+    width: 234px;
+    border-radius: 0px 0px 10px 0px;
+}
+
 .breadcrumb i, .breadcrumb [class^="mdi-"], .breadcrumb [class*="mdi-"],
 	.breadcrumb i.material-icons {
 	display: inline-block;

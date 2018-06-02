@@ -6,24 +6,23 @@ public class Disciplina {
 	private Integer id;
 	private String nome;
 	private Grade grade;
+	private Integer curso;
 	private Integer semestre;
 	private List<Disciplina> preRequisitos;
 
 	public Disciplina() {
 		
 	}
+	
+	public Disciplina(String nome, Integer semestre, Integer idCurso) {
+		this.nome = nome;
+		this.semestre = semestre;
+		this.curso = idCurso;
+	}
 
 	// FIXME Temporario até a existi um banco
 	public Disciplina(String nome) {
 		this.nome = nome;
-	}
-
-	public Grade getGrade() {
-		return grade;
-	}
-
-	public void setGrade(Grade grade) {
-		this.grade = grade;
 	}
 
 	public List<Disciplina> getPreRequisitos() {
@@ -51,11 +50,11 @@ public class Disciplina {
 		this.nome = nome;
 	}
 
-	public Grade getCurso() {
+	public Grade getGrade() {
 		return grade;
 	}
 
-	public void setCurso(Grade grade) {
+	public void setGrade(Grade grade) {
 		this.grade = grade;
 	}
 
@@ -78,5 +77,13 @@ public class Disciplina {
 	@Override
 	public String toString() {
 		return this.nome;
+	}
+
+	public void setCurso(Integer curso) {
+		this.curso = curso;
+	}
+	
+	public Integer getCurso() {
+		return this.curso;
 	}
 }
