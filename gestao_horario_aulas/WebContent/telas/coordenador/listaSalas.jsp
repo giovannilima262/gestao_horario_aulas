@@ -44,8 +44,8 @@
 			<li><a href="cronogramaCoordenador.jsp">Início</a></li>
 			<li><a href="listaSalas.jsp">Sala</a></li>
 			<li><a href="listaDisciplinas.jsp">Disciplina</a></li>
-			<li><a href="">Professor</a></li>
-			<li><a href="">Grade</a></li>
+			<li><a href="listaProfessores.jsp">Professor</a></li>
+			<li><a href="listaGrades.jsp">Grade</a></li>
 			<li><a href="">Horários</a></li>
 		</ul>
 	</div>

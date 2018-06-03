@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Sala</title>
+<title>Professor</title>
 <!--Import Google Icon Font-->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
@@ -53,7 +53,7 @@
 	<nav style="background: #3a3a3a;">
 	<div class="nav-wrapper" style="margin-left: 50px;">
 		<div class="col s12">
-			<a href="listaSalas.jsp" class="breadcrumb">Salas</a><a
+			<a href="listaProfessores.jsp" class="breadcrumb">Professores</a><a
 				class="breadcrumb">Inserir</a>
 
 		</div>
@@ -64,44 +64,25 @@
 		<div class="fc-toolbar">
 
 			<div class="fc-center">
-				<h2>Sala</h2>
+				<h2>Professor</h2>
 			</div>
 		</div>
 		<div>
-			<form class="col s3" action="inserirSala" method="POST">
-				<div class="col">
-					<label>Bloco</label>
+			<form class="col s3" action="inserirProfessor" method="POST">
 
-				</div>
 				<div class="row">
 					<div class="input-field col s3">
-						<select required="required" name="bloco" class="browser-default">
-							<option value="" disabled selected>Selecione</option>
-							<option value="A">A</option>
-							<option value="B">B</option>
-						</select>
+						<input required="required" name="nome" id="cpf" type="text"
+							class="validate"> <label for="cpf">Nome</label>
 
 					</div>
-				</div>
-				<div class="col">
-					<label>Tipo da Sala</label>
 
 				</div>
-				<div class="row">
-					<div class="input-field col s3">
-						<select required="required" name="tipo" class="browser-default">
-							<option value="" disabled selected>Selecione</option>
-							<option value="1">Lami</option>
-							<option value="2">Sala</option>
-							<option value="3">Auditório</option>
-						</select>
 
-					</div>
-				</div>
 				<div class="row">
 					<div class="input-field col s3">
-						<input required="required" name="nome" id="first_name" type="text"
-							class="validate"> <label for="first_name">Nome</label>
+						<input required="required" name="cpf" id="first_name" type="text"
+							class="validate"> <label for="first_name">CPF</label>
 
 					</div>
 

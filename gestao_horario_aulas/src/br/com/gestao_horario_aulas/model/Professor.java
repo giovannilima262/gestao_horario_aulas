@@ -5,6 +5,14 @@ public class Professor {
 	private String cpf;
 	private String nome;
 
+	public Professor() {
+	}
+
+	public Professor(String nome, String cpf) {
+		this.nome = nome;
+		this.cpf = cpf;
+	}
+
 	public Integer getId() {
 		return this.id;
 	}

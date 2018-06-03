@@ -6,8 +6,15 @@ public class Grade {
 	private Integer id;
 	private Curso curso;
 	private String AnoSemestreInicio;
-	private String AnoSemestreFim;
 	private List<Disciplina> disciplinas;
+	
+	public Grade() {}
+	
+	public Grade(String semestreInicio, String curso) {
+		this.AnoSemestreInicio = semestreInicio;
+		this.curso = new Curso();
+		this.curso.setId(Integer.parseInt(curso));
+	}
 
 	public Integer getId() {
 		return id;
@@ -31,14 +38,6 @@ public class Grade {
 
 	public void setAnoSemestreInicio(String anoSemestreInicio) {
 		AnoSemestreInicio = anoSemestreInicio;
-	}
-
-	public String getAnoSemestreFim() {
-		return AnoSemestreFim;
-	}
-
-	public void setAnoSemestreFim(String anoSemestreFim) {
-		AnoSemestreFim = anoSemestreFim;
 	}
 
 	public List<Disciplina> getDisciplinas() {

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Sala</title>
+<title>Grade</title>
 <!--Import Google Icon Font-->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
@@ -53,7 +53,7 @@
 	<nav style="background: #3a3a3a;">
 	<div class="nav-wrapper" style="margin-left: 50px;">
 		<div class="col s12">
-			<a href="listaSalas.jsp" class="breadcrumb">Salas</a><a
+			<a href="listaGrades.jsp" class="breadcrumb">Grades</a><a
 				class="breadcrumb">Inserir</a>
 
 		</div>
@@ -64,47 +64,37 @@
 		<div class="fc-toolbar">
 
 			<div class="fc-center">
-				<h2>Sala</h2>
+				<h2>Grade</h2>
 			</div>
 		</div>
 		<div>
-			<form class="col s3" action="inserirSala" method="POST">
+			<form class="col s3" action="inserirGrade" method="POST">
 				<div class="col">
-					<label>Bloco</label>
+					<label>Curso</label>
 
 				</div>
 				<div class="row">
 					<div class="input-field col s3">
-						<select required="required" name="bloco" class="browser-default">
+						<select required="required" name="curso" class="browser-default">
 							<option value="" disabled selected>Selecione</option>
-							<option value="A">A</option>
-							<option value="B">B</option>
+							<option value="">Lista de cursos</option>
 						</select>
 
 					</div>
 				</div>
 				<div class="col">
-					<label>Tipo da Sala</label>
+					<label>Semestre de Início</label>
 
 				</div>
 				<div class="row">
 					<div class="input-field col s3">
-						<select required="required" name="tipo" class="browser-default">
+						<select required="required" name="semestre"
+							class="browser-default">
 							<option value="" disabled selected>Selecione</option>
-							<option value="1">Lami</option>
-							<option value="2">Sala</option>
-							<option value="3">Auditório</option>
+							<option value="">Lista de semestres</option>
 						</select>
 
 					</div>
-				</div>
-				<div class="row">
-					<div class="input-field col s3">
-						<input required="required" name="nome" id="first_name" type="text"
-							class="validate"> <label for="first_name">Nome</label>
-
-					</div>
-
 				</div>
 
 				<div class="row">

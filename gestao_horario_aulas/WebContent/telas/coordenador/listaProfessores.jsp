@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Sala</title>
+<title>Lista de Professores</title>
 <!--Import Google Icon Font-->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
@@ -50,70 +50,37 @@
 		</ul>
 	</div>
 	</nav>
-	<nav style="background: #3a3a3a;">
-	<div class="nav-wrapper" style="margin-left: 50px;">
-		<div class="col s12">
-			<a href="listaSalas.jsp" class="breadcrumb">Salas</a><a
-				class="breadcrumb">Inserir</a>
-
-		</div>
-	</div>
-	</nav>
 
 	<div id="calendar" style="margin: 50px;">
 		<div class="fc-toolbar">
 
 			<div class="fc-center">
-				<h2>Sala</h2>
+				<h2>Professores</h2>
 			</div>
 		</div>
 		<div>
-			<form class="col s3" action="inserirSala" method="POST">
-				<div class="col">
-					<label>Bloco</label>
+			<div class="row">
+				<button class="btn waves-effect waves-light" name="action">
+					<a style="color: white" href="professor.jsp">Inserir</a>
+				</button>
+			</div>
+			<div>
+				<table>
+					<tr>
+						<td><div>
+								<table>
+									<tr>
+										<th>Nome</th>
+										<th>CPF</th>
+										<th></th>
+										<th></th>
+									</tr>
 
-				</div>
-				<div class="row">
-					<div class="input-field col s3">
-						<select required="required" name="bloco" class="browser-default">
-							<option value="" disabled selected>Selecione</option>
-							<option value="A">A</option>
-							<option value="B">B</option>
-						</select>
-
-					</div>
-				</div>
-				<div class="col">
-					<label>Tipo da Sala</label>
-
-				</div>
-				<div class="row">
-					<div class="input-field col s3">
-						<select required="required" name="tipo" class="browser-default">
-							<option value="" disabled selected>Selecione</option>
-							<option value="1">Lami</option>
-							<option value="2">Sala</option>
-							<option value="3">Auditório</option>
-						</select>
-
-					</div>
-				</div>
-				<div class="row">
-					<div class="input-field col s3">
-						<input required="required" name="nome" id="first_name" type="text"
-							class="validate"> <label for="first_name">Nome</label>
-
-					</div>
-
-				</div>
-
-				<div class="row">
-					<button class="btn waves-effect waves-light" type="submit"
-						name="action">Cadastrar</button>
-				</div>
-				<p>${mensagem}</p>
-			</form>
-
+								</table>
+							</div></td>
+					</tr>
+				</table>
+			</div>
 		</div>
 
 
