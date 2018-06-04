@@ -4,6 +4,13 @@ public class Coordenador {
 	private Integer id;
 	private String nome;
 
+	public Coordenador() {
+	}	
+	
+	public Coordenador(String nome) {
+		this.nome = nome;
+	}
+
 	public Integer getId() {
 		return this.id;
 	}
@@ -28,7 +35,6 @@ public class Coordenador {
 	
 	@Override
 	public String toString() {
-		
-		return this.id+" "+this.nome;
+		return this.nome;
 	}
 }

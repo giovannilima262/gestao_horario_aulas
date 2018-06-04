@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -20,6 +21,8 @@
 	<jsp:useBean id="coordenador" scope="session"
 		class="br.com.gestao_horario_aulas.model.Coordenador"></jsp:useBean>
 
+	<jsp:useBean id="SalaDao" scope="session"
+		class="br.com.gestao_horario_aulas.dao.SalaDao"></jsp:useBean>
 	<nav>
 	<div style="background: #3a3a3a;" class="nav-wrapper">
 		<img style="height: 100%; margin-left: 25px; margin-right: 25px;"
@@ -46,6 +49,8 @@
 			<li><a href="listaDisciplinas.jsp">Disciplina</a></li>
 			<li><a href="listaProfessores.jsp">Professor</a></li>
 			<li><a href="listaGrades.jsp">Grade</a></li>
+			<li><a href="listaCursos.jsp">Cursos</a></li>
+			<li><a href="listaCoordenadores.jsp">Coordenadores</a></li>
 			<li><a href="">Horários</a></li>
 		</ul>
 	</div>
@@ -76,7 +81,15 @@
 										<th></th>
 										<th></th>
 									</tr>
-
+									<c:forEach var="sala" items="${SalaDao.getLista()}">
+									<tr>
+										<td>${sala.getNome()}</td>
+										<td>${sala.getBloco()}</td>
+										<td>${sala.getTipoSala()}</td>
+										<td></td>
+										<td><a href="inserirSala?id=${sala.getId()}" >delete</a></td>										
+									</tr>
+									</c:forEach>
 								</table>
 							</div></td>
 					</tr>

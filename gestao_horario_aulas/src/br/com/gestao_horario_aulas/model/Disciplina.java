@@ -6,7 +6,7 @@ public class Disciplina {
 	private Integer id;
 	private String nome;
 	private Grade grade;
-	private Integer curso;
+	private Curso curso;
 	private Integer semestre;
 	private List<Disciplina> preRequisitos;
 
@@ -14,10 +14,10 @@ public class Disciplina {
 		
 	}
 	
-	public Disciplina(String nome, Integer semestre, Integer idCurso) {
+	public Disciplina(String nome, Integer semestre, Curso curso) {
 		this.nome = nome;
 		this.semestre = semestre;
-		this.curso = idCurso;
+		this.curso = curso;
 	}
 
 	// FIXME Temporario até a existi um banco
@@ -79,11 +79,11 @@ public class Disciplina {
 		return this.nome;
 	}
 
-	public void setCurso(Integer curso) {
+	public void setCurso(Curso curso) {
 		this.curso = curso;
 	}
 	
-	public Integer getCurso() {
+	public Curso getCurso() {
 		return this.curso;
 	}
 }

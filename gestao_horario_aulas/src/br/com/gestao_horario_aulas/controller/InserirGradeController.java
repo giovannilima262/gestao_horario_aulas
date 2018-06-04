@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.com.gestao_horario_aulas.dao.GradeDao;
 import br.com.gestao_horario_aulas.model.Grade;
 import br.com.gestao_horario_aulas.util.Util;
 
@@ -36,6 +37,7 @@ public class InserirGradeController extends HttpServlet {
 			return;
 		}
 		Grade grade = new Grade(semestre, curso);
+		GradeDao graded = new GradeDao();
 		// TODO Inserir Grade e mensagem de inserir
 		response.sendRedirect("./listaGrades.jsp");
 	}

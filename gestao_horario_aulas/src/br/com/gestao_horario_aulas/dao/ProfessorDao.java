@@ -23,7 +23,7 @@ public class ProfessorDao {
 
 	public void insert(Professor professor) {
 		try (PreparedStatement stmt = conexao.getConnection()
-				.prepareStatement("INSERT INTO coordenador (nome, cpf) VALUES (?,?);");) {
+				.prepareStatement("INSERT INTO professor (nome, cpf) VALUES (?,?);");) {
 			stmt.setString(1, professor.getNome());
 			stmt.setString(2, professor.getCpf());
 			stmt.execute();
@@ -36,8 +36,8 @@ public class ProfessorDao {
 		List<Professor> professores = new ArrayList<>();
 		try (PreparedStatement stmt = conexao.getConnection().prepareStatement("SELECT * FROM professor;");
 				ResultSet rs = stmt.executeQuery()) {
-			Professor professor = new Professor();
 			while (rs.next()) {
+				Professor professor = new Professor();
 				professor.setId(rs.getInt("id"));
 				professor.setNome(rs.getString("nome"));
 				professor.setCpf(rs.getString("cpf"));

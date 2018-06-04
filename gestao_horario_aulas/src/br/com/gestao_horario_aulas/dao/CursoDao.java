@@ -36,9 +36,9 @@ public class CursoDao {
 		List<Curso> cursos = new ArrayList<>();
 		try (PreparedStatement stmt = conexao.getConnection().prepareStatement("SELECT * FROM curso;");
 				ResultSet rs = stmt.executeQuery()) {
-			Curso curso = new Curso();
-			CoordenadorDao cd = new CoordenadorDao();
 			while (rs.next()) {
+				Curso curso = new Curso();
+				CoordenadorDao cd = new CoordenadorDao();
 				curso.setId(rs.getInt("id"));
 				curso.setNome(rs.getString("nome"));
 				curso.setCoordenador(cd.findById(rs.getInt("id_coordenador")));

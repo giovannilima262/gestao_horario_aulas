@@ -36,8 +36,8 @@ public class CoordenadorDao {
 		List<Coordenador> coordenadores = new ArrayList<>();
 		try (PreparedStatement stmt = conexao.getConnection().prepareStatement("SELECT * FROM coordenador;");
 				ResultSet rs = stmt.executeQuery()) {
-			Coordenador coordenador = new Coordenador();
 			while (rs.next()) {
+				Coordenador coordenador = new Coordenador();
 				coordenador.setId(rs.getInt("id"));
 				coordenador.setNome(rs.getString("nome"));
 				coordenadores.add(coordenador);
@@ -65,7 +65,7 @@ public class CoordenadorDao {
 
 	public ArrayList<Coordenador> findByNome(String nome) {
 		List<Coordenador> coordenadores = new ArrayList<>();
-		try (PreparedStatement stmt = conexao.getConnection().prepareStatement("SELECT * FROM coordenador WHERE nome = '"+nome+"' ;");
+		try (PreparedStatement stmt = conexao.getConnection().prepareStatement("SELECT * FROM coordenador WHERE nome = '"+nome+"';");
 				ResultSet rs = stmt.executeQuery()) {
 			while (rs.next()) {
 				Coordenador coordenador = new Coordenador();

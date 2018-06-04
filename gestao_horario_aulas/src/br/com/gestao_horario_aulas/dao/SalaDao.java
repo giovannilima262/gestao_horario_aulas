@@ -21,12 +21,12 @@ public class SalaDao {
 		conexao.closeConnection();
 	}
 
-	public void insert(Sala aula) {
+	public void insert(Sala sala) {
 		try (PreparedStatement stmt = conexao.getConnection()
 				.prepareStatement("INSERT INTO sala (nome, bloco, tipo_sala) VALUES (?,?,?);");) {
-			stmt.setString(1, aula.getNome());
-			stmt.setString(2, aula.getBloco());
-			stmt.setInt(3, aula.getTipoSala().getCodigo());
+			stmt.setString(1, sala.getNome());
+			stmt.setString(2, sala.getBloco());
+			stmt.setInt(3, sala.getTipoSala().getCodigo());
 			stmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -37,8 +37,8 @@ public class SalaDao {
 		List<Sala> salas = new ArrayList<>();
 		try (PreparedStatement stmt = conexao.getConnection().prepareStatement("SELECT * FROM sala;");
 				ResultSet rs = stmt.executeQuery()) {
-			Sala sala = new Sala();
 			while (rs.next()) {
+				Sala sala = new Sala();
 				sala.setId(rs.getInt("id"));
 				sala.setNome(rs.getString("nome"));
 				sala.setBloco(rs.getString("bloco"));

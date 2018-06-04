@@ -1,5 +1,8 @@
 package br.com.gestao_horario_aulas.dao;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +10,6 @@ import br.com.gestao_horario_aulas.model.Disciplina;
 import br.com.gestao_horario_aulas.util.Conexao;
 
 public class DisciplinaDao {
-	private List<Disciplina> materias = new ArrayList<>();
 
 	private Conexao conexao;
 
@@ -19,59 +21,123 @@ public class DisciplinaDao {
 		conexao.closeConnection();
 	}
 
-	public void insert(Disciplina aula) {
-		materias.add(aula);
+	public void insert(Disciplina disciplina) {
+		try (PreparedStatement stmt = conexao.getConnection()
+				.prepareStatement("INSERT INTO disciplina (nome, id_curso, semestre) VALUES (?,?,?);");) {
+			stmt.setString(1, disciplina.getNome());
+			stmt.setInt(2, disciplina.getCurso().getId());
+			stmt.setInt(3, disciplina.getSemestre());
+			stmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public ArrayList<Disciplina> getLista() {
-		return (ArrayList<Disciplina>) this.materias;
+		List<Disciplina> disciplinas = new ArrayList<>();
+		try (PreparedStatement stmt = conexao.getConnection().prepareStatement("SELECT * FROM disciplina;");
+				ResultSet rs = stmt.executeQuery()) {
+			while (rs.next()) {
+				CursoDao cdao = new CursoDao();
+				Disciplina disciplina = new Disciplina();
+				disciplina.setId(rs.getInt("id"));
+				disciplina.setNome(rs.getString("nome"));
+				disciplina.setSemestre(rs.getInt("semestre"));
+				disciplina.setCurso(cdao.findById(rs.getInt("id_curso")));
+				disciplinas.add(disciplina);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return (ArrayList<Disciplina>) disciplinas;
+
 	}
 
-	public Disciplina findById(Integer id) {
-		Disciplina materia = null;
-		for (Disciplina m : this.materias) {
-			if (m.getId().equals(id)) {
-				materia = m;
-			}
+	public Disciplina findById(Integer id) { 
+	Disciplina disciplina = new Disciplina();
+	try (PreparedStatement stmt = conexao.getConnection()
+			.prepareStatement("SELECT * FROM disciplina WHERE id = " + id +";"); 
+			ResultSet rs = stmt.executeQuery()) {
+		while (rs.next()) {
+			CursoDao cdao = new CursoDao();
+			disciplina.setId(rs.getInt("id"));
+			disciplina.setNome(rs.getString("nome"));
+			disciplina.setCurso(cdao.findById(rs.getInt("id_curso")));
 		}
-		return materia;
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	return disciplina;
+}
+
+	public ArrayList<Disciplina> findByNome(String nome) {
+		List<Disciplina> disciplinas = new ArrayList<>();
+		try (PreparedStatement stmt = conexao.getConnection().prepareStatement("SELECT * FROM disciplina WHERE nome = '" + nome +"';");
+				ResultSet rs = stmt.executeQuery()) {
+			while (rs.next()) {
+				CursoDao cdao = new CursoDao();
+				Disciplina disciplina = new Disciplina();
+				disciplina.setId(rs.getInt("id"));
+				disciplina.setNome(rs.getString("nome"));
+				disciplina.setSemestre(rs.getInt("semestre"));
+				disciplina.setCurso(cdao.findById(rs.getInt("id_curso")));
+				disciplinas.add(disciplina);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return (ArrayList<Disciplina>) disciplinas;
 	}
 
-	public Disciplina findByNome(String nome) {
-		Disciplina materia = null;
-		for (Disciplina m : this.materias) {
-			if (m.getNome().equals(nome)) {
-				materia = m;
+	public ArrayList<Disciplina> findByCurso(Integer cursoId) {
+		List<Disciplina> disciplinas = new ArrayList<>();
+		try (PreparedStatement stmt = conexao.getConnection().prepareStatement("SELECT * FROM disciplina WHERE id_curso = " + cursoId +";");
+				ResultSet rs = stmt.executeQuery()) {
+			while (rs.next()) {
+				CursoDao cdao = new CursoDao();
+				Disciplina disciplina = new Disciplina();
+				disciplina.setId(rs.getInt("id"));
+				disciplina.setNome(rs.getString("nome"));
+				disciplina.setSemestre(rs.getInt("semestre"));
+				disciplina.setCurso(cdao.findById(rs.getInt("id_curso")));
+				disciplinas.add(disciplina);
 			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-		return materia;
+		return (ArrayList<Disciplina>) disciplinas;
+	
 	}
-//
-//	public ArrayList<Disciplina> findByCurso(Integer cursoId) {
-//		ArrayList<Disciplina> materias = new ArrayList<>();
-//		for (Disciplina m : this.materias) {
-//			if (m.getCurso().getId().equals(cursoId)) {
-//				materias.add(m);
-//			}
-//		}
-//		return materias;
-//	}
 
 	public ArrayList<Disciplina> findBySemestre(Integer semestre) {
-		ArrayList<Disciplina> materias = new ArrayList<>();
-		for (Disciplina m : this.materias) {
-			if (m.getSemestre().equals(semestre)) {
-				materias.add(m);
+		List<Disciplina> disciplinas = new ArrayList<>();
+		try (PreparedStatement stmt = conexao.getConnection().prepareStatement("SELECT * FROM disciplina WHERE semestre = " + semestre +";");
+				ResultSet rs = stmt.executeQuery()) {
+			while (rs.next()) {
+				CursoDao cdao = new CursoDao();
+				Disciplina disciplina = new Disciplina();
+				disciplina.setId(rs.getInt("id"));
+				disciplina.setNome(rs.getString("nome"));
+				disciplina.setSemestre(rs.getInt("semestre"));
+				disciplina.setCurso(cdao.findById(rs.getInt("id_curso")));
+				disciplinas.add(disciplina);
 			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-		return materias;
+		return (ArrayList<Disciplina>) disciplinas;
 	}
 
 	public void delete(Integer id) {
-		for (Disciplina m : this.materias) {
-			if (m.getId().equals(id)) {
-				this.materias.remove(m);
-			}
+		try (PreparedStatement stmt = conexao.getConnection().prepareStatement("DELETE FROM disciplina WHERE id =" + id)) {
+			stmt.execute();
+		} catch (SQLException e) {
+			new RuntimeException(e);
 		}
+	
 	}
 }

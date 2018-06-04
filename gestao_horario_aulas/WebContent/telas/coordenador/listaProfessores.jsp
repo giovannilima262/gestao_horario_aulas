@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,6 +20,9 @@
 <body>
 	<jsp:useBean id="coordenador" scope="session"
 		class="br.com.gestao_horario_aulas.model.Coordenador"></jsp:useBean>
+		
+	<jsp:useBean id="ProfessorDao" scope="session"
+		class="br.com.gestao_horario_aulas.dao.ProfessorDao"></jsp:useBean>
 
 	<nav>
 	<div style="background: #3a3a3a;" class="nav-wrapper">
@@ -46,6 +50,8 @@
 			<li><a href="listaDisciplinas.jsp">Disciplina</a></li>
 			<li><a href="listaProfessores.jsp">Professor</a></li>
 			<li><a href="listaGrades.jsp">Grade</a></li>
+			<li><a href="listaCursos.jsp">Cursos</a></li>
+			<li><a href="listaCoordenadores.jsp">Coordenadores</a></li>
 			<li><a href="">Horários</a></li>
 		</ul>
 	</div>
@@ -75,7 +81,14 @@
 										<th></th>
 										<th></th>
 									</tr>
-
+									<c:forEach var="professor" items="${ProfessorDao.getLista()}">
+									<tr>
+										<td>${professor.getNome()}</td>
+										<td>${professor.getCpf()}</td>
+										<td></td>
+										<td><a href="inserirProfessor?id=${professor.getId()}" >delete</a></td>										
+									</tr>
+									</c:forEach>
 								</table>
 							</div></td>
 					</tr>

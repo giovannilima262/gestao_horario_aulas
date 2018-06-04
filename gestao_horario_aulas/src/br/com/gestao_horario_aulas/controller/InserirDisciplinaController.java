@@ -8,8 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.com.gestao_horario_aulas.dao.DisciplinaDao;
+import br.com.gestao_horario_aulas.model.Curso;
 import br.com.gestao_horario_aulas.model.Disciplina;
-import br.com.gestao_horario_aulas.model.Sala;
 import br.com.gestao_horario_aulas.util.Util;
 
 /**
@@ -26,7 +27,14 @@ public class InserirDisciplinaController extends HttpServlet {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+	
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String id = req.getParameter("id");
+		DisciplinaDao disciplinad = new DisciplinaDao();
+		disciplinad.delete(Integer.parseInt(id));
+		resp.sendRedirect("./listaDisciplinas.jsp");
+	}
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String nome = request.getParameter("nome");
@@ -37,7 +45,10 @@ public class InserirDisciplinaController extends HttpServlet {
 			request.getRequestDispatcher("./disciplina.jsp").forward(request, response);
 			return;
 		}
-		Disciplina disciplina = new Disciplina(nome, Integer.parseInt(semestre), Integer.parseInt(idCurso));
+		DisciplinaDao disciplinad = new DisciplinaDao();
+		Curso c = new Curso();
+		c.setId(Integer.parseInt(idCurso));
+		disciplinad.insert(new Disciplina(nome, Integer.parseInt(semestre), c ));
 		// TODO Inserir disciplina e mensagem de inseri
 		response.sendRedirect("./listaDisciplinas.jsp");
 	}

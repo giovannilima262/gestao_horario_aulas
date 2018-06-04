@@ -35,8 +35,8 @@
 						<p>Selecione de que forma acessar</p>
 					</div>
 					<div class="card-action">
-						<a href="./telas/selecao_curso.jsp">Aluno</a> <a
-							href="./telas/login.jsp">Coordenador</a>
+						<a href="./telas/selecao_curso.jsp">Aluno</a> 
+						<a href="./telas/login.jsp">Coordenador</a>
 					</div>
 				</div>
 			</div>
