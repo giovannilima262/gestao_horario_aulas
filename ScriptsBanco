@@ -12,16 +12,22 @@ CREATE TABLE professor (id SERIAL PRIMARY KEY,
                         nome VARCHAR(100));
                         
  CREATE TABLE disciplina (id SERIAL PRIMARY KEY, 
-                      nome VARCHAR(100) NOT NULL,
-                      semestre INT NOT NULL);
+                          id_curso INT REFERENCES curso(id) NOT NULL,
+                          nome VARCHAR(100) NOT NULL);
+                      
+ CREATE TABLE grade (id SERIAL PRIMARY KEY,
+                     id_curso INT REFERENCES curso(id) NOT NULL,
+                     ano_semestre_ini VARCHAR(6) NOT NULL,
+                     ano_semestre_fim VARCHAR(6) NOT NULL);
                       
 CREATE TABLE disciplina_grade (id SERIAL PRIMARY KEY, 
                       id_disciplina INT REFERENCES disciplina(id) NOT NULL,
-                      id_grade INT REFERENCES grade(id) NOT NULL);                        
+                      id_grade INT REFERENCES grade(id) NOT NULL,
+                      semestre_grade INT NOT NULL);                        
                         
-CREATE TABLE professor_disciplina (id SERIAL PRIMARY KEY, 
+CREATE TABLE professor_disciplina_grade (id SERIAL PRIMARY KEY, 
                       id_professor INT REFERENCES professor(id) NOT NULL,
-                      id_disciplina INT REFERENCES disciplina(id) NOT NULL);
+                      id_disciplina_grade INT REFERENCES disciplina_grade(id) NOT NULL);
 
 CREATE TABLE sala (id SERIAL PRIMARY KEY,
                    bloco VARCHAR(100) NOT NULL,
@@ -38,9 +44,4 @@ CREATE TABLE aula (id SERIAL PRIMARY KEY,
 CREATE TABLE disciplina_pre_requsito (id SERIAL PRIMARY KEY,
                                       id_disciplina INT REFERENCES disciplina(id) NOT NULL,
                                       id_disciplina_requisito INT REFERENCES disciplina(id) NOT NULL);
-
-CREATE TABLE grade (id SERIAL PRIMARY KEY,
-                    id_curso INT REFERENCES curso(id) NOT NULL,
-                    ano_semestre_ini VARCHAR(6) NOT NULL,
-                    ano_semestre_fim VARCHAR(6) NOT NULL);
-                                      
+                         
