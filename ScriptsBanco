@@ -8,7 +8,7 @@ CREATE TABLE curso (id SERIAL PRIMARY KEY,
                     id_coordenador INT REFERENCES coordenador(id) NOT NULL);
                     
 CREATE TABLE professor (id SERIAL PRIMARY KEY,
-                        cpf VARCHAR(11) NOT NULL,
+                        cpf VARCHAR(11) NOT NULL UNIQUE,
                         nome VARCHAR(100));
                         
  CREATE TABLE disciplina (id SERIAL PRIMARY KEY, 
@@ -17,6 +17,7 @@ CREATE TABLE professor (id SERIAL PRIMARY KEY,
                       
  CREATE TABLE grade (id SERIAL PRIMARY KEY,
                      id_curso INT REFERENCES curso(id) NOT NULL,
+                     nome VARCHAR(15) NOT NULL UNIQUE,
                      ano_semestre_ini VARCHAR(6) NOT NULL,
                      ano_semestre_fim VARCHAR(6) NOT NULL);
                       
