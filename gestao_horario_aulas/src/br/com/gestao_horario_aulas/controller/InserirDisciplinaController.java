@@ -39,8 +39,7 @@ public class InserirDisciplinaController extends HttpServlet {
 			throws ServletException, IOException {
 		String nome = request.getParameter("nome");
 		String idCurso = request.getParameter("curso");
-		String semestre = request.getParameter("semestre");
-		if (Util.isEmptyOrNull(nome) || Util.isEmptyOrNull(idCurso) || Util.isEmptyOrNull(semestre)) {
+		if (Util.isEmptyOrNull(nome) || Util.isEmptyOrNull(idCurso)) {
 			request.setAttribute("mensagem", "Todos os dados são obrigatórios para inserir uma disciplina");
 			request.getRequestDispatcher("./disciplina.jsp").forward(request, response);
 			return;
@@ -48,7 +47,7 @@ public class InserirDisciplinaController extends HttpServlet {
 		DisciplinaDao disciplinad = new DisciplinaDao();
 		Curso c = new Curso();
 		c.setId(Integer.parseInt(idCurso));
-		disciplinad.insert(new Disciplina(nome, Integer.parseInt(semestre), c ));
+		disciplinad.insert(new Disciplina(nome, c));
 		// TODO Inserir disciplina e mensagem de inseri
 		response.sendRedirect("./listaDisciplinas.jsp");
 	}

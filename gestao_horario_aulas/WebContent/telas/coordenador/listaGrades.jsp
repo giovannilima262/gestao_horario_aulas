@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,6 +20,9 @@
 <body>
 	<jsp:useBean id="coordenador" scope="session"
 		class="br.com.gestao_horario_aulas.model.Coordenador"></jsp:useBean>
+
+	<jsp:useBean id="gradeController" scope="page"
+		class="br.com.gestao_horario_aulas.controller.InserirGradeController"></jsp:useBean>
 
 	<nav>
 	<div style="background: #3a3a3a;" class="nav-wrapper">
@@ -72,11 +76,24 @@
 						<td><div>
 								<table>
 									<tr>
+										<th>Nome</th>
 										<th>Curso</th>
 										<th>Semestre de Início</th>
+										<th>Semestre Fim</th>
 										<th></th>
 										<th></th>
 									</tr>
+
+									<c:forEach var="grade" items="${gradeController.getGrades()}">
+										<tr>
+											<td>${grade.getNome()}</td>
+											<td>${grade.getCurso().getNome()}</td>
+											<td>${grade.getAnoSemestreInicio()}</td>
+											<td>${grade.getAnoSemestreFim()}</td>
+											<td></td>
+											<td><a href="inserirGrade?id=${grade.getId()}">delete</a></td>
+										</tr>
+									</c:forEach>
 
 								</table>
 							</div></td>

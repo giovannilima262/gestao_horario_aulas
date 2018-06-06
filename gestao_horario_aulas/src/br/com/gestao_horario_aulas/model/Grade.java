@@ -4,16 +4,19 @@ import java.util.List;
 
 public class Grade {
 	private Integer id;
+	private String nome;
 	private Curso curso;
-	private String AnoSemestreInicio;
+	private String anoSemestreFim;
+	private String anoSemestreInicio;
 	private List<Disciplina> disciplinas;
 	
 	public Grade() {}
 	
-	public Grade(String semestreInicio, String curso) {
-		this.AnoSemestreInicio = semestreInicio;
+	public Grade(String nome, String semestreInicio, String idCurso) {
+		this.nome = nome;
+		this.anoSemestreInicio = semestreInicio;
 		this.curso = new Curso();
-		this.curso.setId(Integer.parseInt(curso));
+		this.curso.setId(Integer.parseInt(idCurso));
 	}
 
 	public Integer getId() {
@@ -33,11 +36,11 @@ public class Grade {
 	}
 
 	public String getAnoSemestreInicio() {
-		return AnoSemestreInicio;
+		return anoSemestreInicio;
 	}
 
 	public void setAnoSemestreInicio(String anoSemestreInicio) {
-		AnoSemestreInicio = anoSemestreInicio;
+		this.anoSemestreInicio = anoSemestreInicio;
 	}
 
 	public List<Disciplina> getDisciplinas() {
@@ -46,6 +49,22 @@ public class Grade {
 
 	public void setDisciplinas(List<Disciplina> disciplinas) {
 		this.disciplinas = disciplinas;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getAnoSemestreFim() {
+		return anoSemestreFim;
+	}
+
+	public void setAnoSemestreFim(String anoSemestreFim) {
+		this.anoSemestreFim = anoSemestreFim;
 	}
 
 }

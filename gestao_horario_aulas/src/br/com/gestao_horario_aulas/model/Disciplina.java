@@ -5,18 +5,15 @@ import java.util.List;
 public class Disciplina {
 	private Integer id;
 	private String nome;
-	private Grade grade;
 	private Curso curso;
-	private Integer semestre;
 	private List<Disciplina> preRequisitos;
 
 	public Disciplina() {
 		
 	}
 	
-	public Disciplina(String nome, Integer semestre, Curso curso) {
+	public Disciplina(String nome, Curso curso) {
 		this.nome = nome;
-		this.semestre = semestre;
 		this.curso = curso;
 	}
 
@@ -48,22 +45,6 @@ public class Disciplina {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public Grade getGrade() {
-		return grade;
-	}
-
-	public void setGrade(Grade grade) {
-		this.grade = grade;
-	}
-
-	public Integer getSemestre() {
-		return semestre;
-	}
-
-	public void setSemestre(Integer semestre) {
-		this.semestre = semestre;
 	}
 
 	@Override

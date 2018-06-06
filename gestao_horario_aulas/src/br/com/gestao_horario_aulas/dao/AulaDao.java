@@ -58,7 +58,7 @@ public class AulaDao {
 				aula.setId(rs.getInt("id"));
 				int idProfessorDisciplina = rs.getInt("id_professor_disciplina");
 				aula.setProfessor(getProfessorByProfessorDisciplina(idProfessorDisciplina));
-				aula.setDisciplina(getDisciplinaByProfessorDisciplina(idProfessorDisciplina));
+//				aula.setDisciplina(getDisciplinaByProfessorDisciplina(idProfessorDisciplina));
 			}
 
 		} catch (SQLException e) {
@@ -88,27 +88,27 @@ public class AulaDao {
 		return professor;
 	}
 
-	private Disciplina getDisciplinaByProfessorDisciplina(int idProfessorDisciplina) {
-		Disciplina disciplina = new Disciplina();
-
-		try (PreparedStatement stmt = conexao.getConnection().prepareStatement(
-				"SELECT * FROM professor WHERE (SELECT professor_disciplina.id_professor FROM professor_disciplina WHERE professor_disciplina.id = "
-						+ idProfessorDisciplina + ") = professor.id;");
-				ResultSet rs = stmt.executeQuery();
-				ResultSet rst = stmt.executeQuery();) {
-
-			while (rs.next()) {
-				disciplina.setId(rs.getInt("id"));
-				disciplina.setNome(rs.getString("nome"));
-				disciplina.setSemestre(rs.getInt("semestre"));
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		return disciplina;
-	}
+//	private Disciplina getDisciplinaByProfessorDisciplina(int idProfessorDisciplina) {
+//		Disciplina disciplina = new Disciplina();
+//
+//		try (PreparedStatement stmt = conexao.getConnection().prepareStatement(
+//				"SELECT * FROM professor WHERE (SELECT professor_disciplina.id_professor FROM professor_disciplina WHERE professor_disciplina.id = "
+//						+ idProfessorDisciplina + ") = professor.id;");
+//				ResultSet rs = stmt.executeQuery();
+//				ResultSet rst = stmt.executeQuery();) {
+//
+//			while (rs.next()) {
+//				disciplina.setId(rs.getInt("id"));
+//				disciplina.setNome(rs.getString("nome"));
+//				disciplina.setSemestre(rs.getInt("semestre"));
+//			}
+//
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//
+//		return disciplina;
+//	}
 
 	public Aula findById(Integer id) {
 		Aula aula = null;

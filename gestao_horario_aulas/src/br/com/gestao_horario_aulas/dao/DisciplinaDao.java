@@ -23,10 +23,9 @@ public class DisciplinaDao {
 
 	public void insert(Disciplina disciplina) {
 		try (PreparedStatement stmt = conexao.getConnection()
-				.prepareStatement("INSERT INTO disciplina (nome, id_curso, semestre) VALUES (?,?,?);");) {
+				.prepareStatement("INSERT INTO disciplina (nome, id_curso) VALUES (?,?);");) {
 			stmt.setString(1, disciplina.getNome());
 			stmt.setInt(2, disciplina.getCurso().getId());
-			stmt.setInt(3, disciplina.getSemestre());
 			stmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -42,7 +41,6 @@ public class DisciplinaDao {
 				Disciplina disciplina = new Disciplina();
 				disciplina.setId(rs.getInt("id"));
 				disciplina.setNome(rs.getString("nome"));
-				disciplina.setSemestre(rs.getInt("semestre"));
 				disciplina.setCurso(cdao.findById(rs.getInt("id_curso")));
 				disciplinas.add(disciplina);
 			}
@@ -80,7 +78,6 @@ public class DisciplinaDao {
 				Disciplina disciplina = new Disciplina();
 				disciplina.setId(rs.getInt("id"));
 				disciplina.setNome(rs.getString("nome"));
-				disciplina.setSemestre(rs.getInt("semestre"));
 				disciplina.setCurso(cdao.findById(rs.getInt("id_curso")));
 				disciplinas.add(disciplina);
 			}
@@ -100,7 +97,6 @@ public class DisciplinaDao {
 				Disciplina disciplina = new Disciplina();
 				disciplina.setId(rs.getInt("id"));
 				disciplina.setNome(rs.getString("nome"));
-				disciplina.setSemestre(rs.getInt("semestre"));
 				disciplina.setCurso(cdao.findById(rs.getInt("id_curso")));
 				disciplinas.add(disciplina);
 			}
@@ -112,25 +108,6 @@ public class DisciplinaDao {
 	
 	}
 
-	public ArrayList<Disciplina> findBySemestre(Integer semestre) {
-		List<Disciplina> disciplinas = new ArrayList<>();
-		try (PreparedStatement stmt = conexao.getConnection().prepareStatement("SELECT * FROM disciplina WHERE semestre = " + semestre +";");
-				ResultSet rs = stmt.executeQuery()) {
-			while (rs.next()) {
-				CursoDao cdao = new CursoDao();
-				Disciplina disciplina = new Disciplina();
-				disciplina.setId(rs.getInt("id"));
-				disciplina.setNome(rs.getString("nome"));
-				disciplina.setSemestre(rs.getInt("semestre"));
-				disciplina.setCurso(cdao.findById(rs.getInt("id_curso")));
-				disciplinas.add(disciplina);
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return (ArrayList<Disciplina>) disciplinas;
-	}
 
 	public void delete(Integer id) {
 		try (PreparedStatement stmt = conexao.getConnection().prepareStatement("DELETE FROM disciplina WHERE id =" + id)) {

@@ -21,8 +21,8 @@
 	<jsp:useBean id="coordenador" scope="session"
 		class="br.com.gestao_horario_aulas.model.Coordenador"></jsp:useBean>
 		
-	<jsp:useBean id="CoordenadorDao" scope="session"
-		class="br.com.gestao_horario_aulas.dao.CoordenadorDao"></jsp:useBean>
+	<jsp:useBean id="cursoController" scope="page"
+		class="br.com.gestao_horario_aulas.controller.InserirCursoController"></jsp:useBean>
 
 	<nav>
 	<div style="background: #3a3a3a;" class="nav-wrapper">
@@ -93,7 +93,7 @@
 					<div class="input-field col s3">
 						<select required="required" name="coordenador" class="browser-default">
 							<option value="" disabled selected>Selecione</option>
-							<c:forEach var="coordenador" items="${CoordenadorDao.getLista()}">
+							<c:forEach var="coordenador" items="${cursoController.getCoordenadores()}">
 								<option value="${coordenador.getId()}">${coordenador.getNome()}</option>									
 							</c:forEach>
 						</select>

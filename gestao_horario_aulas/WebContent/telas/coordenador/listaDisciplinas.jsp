@@ -77,7 +77,6 @@
 									<tr>
 										<th>Nome</th>
 										<th>Curso</th>
-										<th>Semestre</th>
 										<th></th>
 										<th></th>
 									</tr>
@@ -85,7 +84,6 @@
 										<tr>
 											<td>${disciplina.getNome()}</td>
 											<td>${disciplina.getCurso()}</td>
-											<td>${disciplina.getSemestre()}</td>
 											<td></td>
 											<td><a href="inserirDisciplina?id=${disciplina.getId()}" >delete</a></td>										
 										</tr>

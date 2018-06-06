@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,6 +20,9 @@
 <body>
 	<jsp:useBean id="coordenador" scope="session"
 		class="br.com.gestao_horario_aulas.model.Coordenador"></jsp:useBean>
+
+	<jsp:useBean id="gradeController" scope="page"
+		class="br.com.gestao_horario_aulas.controller.InserirGradeController"></jsp:useBean>
 
 	<nav>
 	<div style="background: #3a3a3a;" class="nav-wrapper">
@@ -71,6 +75,12 @@
 		</div>
 		<div>
 			<form class="col s3" action="inserirGrade" method="POST">
+				<div class="row">
+					<div class="input-field col s3">
+						<input required="required" name="nome" id="nome" type="text"
+							class="validate"> <label for="nome">Nome</label>
+					</div>
+				</div>
 				<div class="col">
 					<label>Curso</label>
 
@@ -79,7 +89,9 @@
 					<div class="input-field col s3">
 						<select required="required" name="curso" class="browser-default">
 							<option value="" disabled selected>Selecione</option>
-							<option value="">Lista de cursos</option>
+							<c:forEach var="curso" items="${gradeController.getCursos()}">
+								<option value="${curso.getId()}">${curso.getNome()}</option>
+							</c:forEach>
 						</select>
 
 					</div>
@@ -90,10 +102,22 @@
 				</div>
 				<div class="row">
 					<div class="input-field col s3">
+						<select required="required" name="ano"
+							class="browser-default">
+							<option value="" disabled selected>Selecione</option>
+							<c:forEach var="cont" items="${gradeController.getSemestres()}">
+								<option value="${cont}">${cont}</option>
+							</c:forEach>
+						</select>
+
+					</div>
+					
+					<div class="input-field col s3">
 						<select required="required" name="semestre"
 							class="browser-default">
 							<option value="" disabled selected>Selecione</option>
-							<option value="">Lista de semestres</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
 						</select>
 
 					</div>

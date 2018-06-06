@@ -21,8 +21,9 @@
 	<jsp:useBean id="coordenador" scope="session"
 		class="br.com.gestao_horario_aulas.model.Coordenador"></jsp:useBean>
 
-	<jsp:useBean id="SalaDao" scope="session"
-		class="br.com.gestao_horario_aulas.dao.SalaDao"></jsp:useBean>
+	<jsp:useBean id="salaController" scope="page"
+		class="br.com.gestao_horario_aulas.controller.InserirSalasController"></jsp:useBean>
+
 	<nav>
 	<div style="background: #3a3a3a;" class="nav-wrapper">
 		<img style="height: 100%; margin-left: 25px; margin-right: 25px;"
@@ -81,7 +82,7 @@
 										<th></th>
 										<th></th>
 									</tr>
-									<c:forEach var="sala" items="${SalaDao.getLista()}">
+									<c:forEach var="sala" items="${salaController.getSalas()}">
 									<tr>
 										<td>${sala.getNome()}</td>
 										<td>${sala.getBloco()}</td>

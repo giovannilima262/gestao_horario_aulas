@@ -1,6 +1,8 @@
 package br.com.gestao_horario_aulas.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,21 +21,22 @@ import br.com.gestao_horario_aulas.util.Util;
 public class InserirSalasController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
+	private List<Sala> salas = new ArrayList<>();
+	private SalaDao salaDao = new SalaDao();
+
 	public InserirSalasController() {
-		super();
-		// TODO Auto-generated constructor stub
+		salas = salaDao.getLista();
 	}
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String id = req.getParameter("id");
-		SalaDao salad = new SalaDao();
-		salad.delete(Integer.parseInt(id));
+
+		salaDao.delete(Integer.parseInt(id));
 		resp.sendRedirect("./listaSalas.jsp");
 	}
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String nome = request.getParameter("nome");
@@ -44,10 +47,17 @@ public class InserirSalasController extends HttpServlet {
 			request.getRequestDispatcher("./sala.jsp").forward(request, response);
 			return;
 		}
-		SalaDao salad = new SalaDao();
-		salad.insert(new Sala(bloco, nome, tipo));
+		salaDao.insert(new Sala(bloco, nome, tipo));
 		// TODO Inserir Sala e mensagem de inseri
 		response.sendRedirect("./listaSalas.jsp");
+	}
+
+	public List<Sala> getSalas() {
+		return salas;
+	}
+
+	public void setSalas(List<Sala> salas) {
+		this.salas = salas;
 	}
 
 }

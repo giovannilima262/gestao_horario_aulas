@@ -1,6 +1,8 @@
 package br.com.gestao_horario_aulas.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,19 +21,18 @@ import br.com.gestao_horario_aulas.util.Util;
 public class InserirCoordenadorController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
+	private List<Coordenador> coordenadores = new ArrayList<>();
+	private CoordenadorDao coordenadorDao = new CoordenadorDao();
+
 	public InserirCoordenadorController() {
-		super();
-		// TODO Auto-generated constructor stub
+		coordenadores = coordenadorDao.getLista();
 	}
-	
+
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String id = req.getParameter("id");
-		CoordenadorDao coordenadord = new CoordenadorDao();
-		coordenadord.delete(Integer.parseInt(id));
+
+		coordenadorDao.delete(Integer.parseInt(id));
 		resp.sendRedirect("./listaCoordenadores.jsp");
 	}
 
@@ -43,9 +44,15 @@ public class InserirCoordenadorController extends HttpServlet {
 			request.getRequestDispatcher("./coordenador.jsp").forward(request, response);
 			return;
 		}
-		CoordenadorDao coordenadord = new CoordenadorDao();
-		coordenadord.insert(new Coordenador(nome));
-		// TODO Inserir professor e mensagem de inserir
+		coordenadorDao.insert(new Coordenador(nome));
 		response.sendRedirect("./listaCoordenadores.jsp");
+	}
+
+	public List<Coordenador> getCoordenadores() {
+		return coordenadores;
+	}
+
+	public void setCoordenadores(List<Coordenador> coordenadores) {
+		this.coordenadores = coordenadores;
 	}
 }

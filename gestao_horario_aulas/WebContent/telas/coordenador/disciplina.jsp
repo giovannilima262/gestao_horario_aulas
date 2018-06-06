@@ -92,7 +92,6 @@
 						<select required="curso" name="curso" class="browser-default">
 							<option value="" disabled selected>Selecione</option>
 
-							<option value="">Lista de Cursos</option>
 							<c:forEach var="curso" items="${CursoDao.getLista()}">
 										<option value="${curso.getId()}">${curso.getNome()}</option>									
 							</c:forEach>
@@ -102,27 +101,7 @@
 
 					</div>
 				</div>
-				<div class="col">
-					<label>Semestre</label>
-
-				</div>
-				<div class="row">
-					<div class="input-field col s3">
-						<select required="required" name="semestre" class="browser-default">
-							<option value="" disabled selected>Selecione</option>
-							<option value="">Lista de Semestres</option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-							<option value="7">7</option>
-							<option value="8">8</option>
-						</select>
-
-					</div>
-				</div>
+				
 
 
 				<div class="row">

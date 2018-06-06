@@ -21,8 +21,8 @@
 	<jsp:useBean id="coordenador" scope="session"
 		class="br.com.gestao_horario_aulas.model.Coordenador"></jsp:useBean>
 		
-	<jsp:useBean id="CoordenadorDao" scope="session"
-		class="br.com.gestao_horario_aulas.dao.CoordenadorDao"></jsp:useBean>
+	<jsp:useBean id="coordenadorController" scope="page"
+		class="br.com.gestao_horario_aulas.controller.InserirCoordenadorController"></jsp:useBean>
 
 	<nav>
 	<div style="background: #3a3a3a;" class="nav-wrapper">
@@ -80,7 +80,7 @@
 										<th></th>
 										<th></th>
 									</tr>
-									<c:forEach var="coordenador" items="${CoordenadorDao.getLista()}">
+									<c:forEach var="coordenador" items="${coordenadorController.getCoordenadores()}">
 									<tr>
 										<td>${coordenador.getNome()}</td>
 										<td></td>
