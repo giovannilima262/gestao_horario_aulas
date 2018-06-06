@@ -36,7 +36,7 @@ CREATE TABLE sala (id SERIAL PRIMARY KEY,
                    CHECK (tipo_sala IN(1,2,3)));      
                    
 CREATE TABLE aula (id SERIAL PRIMARY KEY,
-                   id_professor_disciplina INT REFERENCES professor_disciplina(id) NOT NULL,
+                   id_professor_disciplina_grade INT REFERENCES professor_disciplina_grade(id) NOT NULL,
                    id_sala INT REFERENCES sala(id) NOT NULL,
                    dia_semana INT NOT NULL,
                    horario INT NOT NULL);
