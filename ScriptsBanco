@@ -19,7 +19,7 @@ CREATE TABLE professor (id SERIAL PRIMARY KEY,
                      id_curso INT REFERENCES curso(id) NOT NULL,
                      nome VARCHAR(15) NOT NULL UNIQUE,
                      ano_semestre_ini VARCHAR(6) NOT NULL,
-                     ano_semestre_fim VARCHAR(6) NOT NULL);
+                     ano_semestre_fim VARCHAR(6));
                       
 CREATE TABLE disciplina_grade (id SERIAL PRIMARY KEY, 
                       id_disciplina INT REFERENCES disciplina(id) NOT NULL,
