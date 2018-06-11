@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gestao_horario_aulas.model.Aula;
-import br.com.gestao_horario_aulas.model.Disciplina;
 import br.com.gestao_horario_aulas.model.Professor;
 import br.com.gestao_horario_aulas.util.Conexao;
 

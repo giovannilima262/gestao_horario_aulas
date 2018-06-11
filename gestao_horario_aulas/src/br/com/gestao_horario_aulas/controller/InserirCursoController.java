@@ -81,5 +81,9 @@ public class InserirCursoController extends HttpServlet {
 	public void setCursos(List<Curso> cursos) {
 		this.cursos = cursos;
 	}
+	
+	public CursoDao getCursoDao() {
+		return this.cursoDao;
+	}
 
 }

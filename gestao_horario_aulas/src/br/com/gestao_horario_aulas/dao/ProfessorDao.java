@@ -66,7 +66,7 @@ public class ProfessorDao {
 		}
 		return professor;
 	}
-
+	
 	public List<Professor> findByNome(String nome) {
 		List<Professor> professores = new ArrayList<>();
 		try (PreparedStatement stmt = conexao.getConnection()

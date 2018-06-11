@@ -31,6 +31,10 @@ public class DisciplinaDao {
 			e.printStackTrace();
 		}
 	}
+	
+	public void name() {
+		
+	}
 
 	public ArrayList<Disciplina> getLista() {
 		List<Disciplina> disciplinas = new ArrayList<>();
