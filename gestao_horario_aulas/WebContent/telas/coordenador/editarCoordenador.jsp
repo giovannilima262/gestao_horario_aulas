@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Lista de Professores</title>
+<title>Professor</title>
 <!--Import Google Icon Font-->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
@@ -20,10 +19,7 @@
 <body>
 	<jsp:useBean id="coordenador" scope="session"
 		class="br.com.gestao_horario_aulas.model.Coordenador"></jsp:useBean>
-		
-	<jsp:useBean id="coordenadorController" scope="page"
-		class="br.com.gestao_horario_aulas.controller.InserirCoordenadorController"></jsp:useBean>
-
+	
 	<nav>
 	<div style="background: #3a3a3a;" class="nav-wrapper">
 		<img style="height: 100%; margin-left: 25px; margin-right: 25px;"
@@ -51,9 +47,17 @@
 			<li><a href="listaProfessores.jsp">Professor</a></li>
 			<li><a href="listaGrades.jsp">Grade</a></li>
 			<li><a href="listaCursos.jsp">Cursos</a></li>
-			<li><a href="listaCoordenadores.jsp">Coordenadores</a></li>
 			<li><a href="">Horários</a></li>
 		</ul>
+	</div>
+	</nav>
+	<nav style="background: #3a3a3a;">
+	<div class="nav-wrapper" style="margin-left: 50px;">
+		<div class="col s12">
+			<a href="listaCoordenadores.jsp" class="breadcrumb">Coordenador</a><a
+				class="breadcrumb">Editar</a>
+
+		</div>
 	</div>
 	</nav>
 
@@ -61,37 +65,34 @@
 		<div class="fc-toolbar">
 
 			<div class="fc-center">
-				<h2>Coordenadores</h2>
+				<h2>Coordenador</h2>
 			</div>
 		</div>
 		<div>
-			<div class="row">
-				<button class="btn waves-effect waves-light" name="action">
-					<a style="color: white" href="coordenador.jsp">Inserir</a>
-				</button>
-			</div>
-			<div>
-				<table>
-					<tr>
-						<td><div>
-								<table>
-									<tr>
-										<th>Nome</th>
-										<th></th>
-										<th></th>
-									</tr>
-									<c:forEach var="coordenador" items="${coordenadorController.getCoordenadores()}">
-									<tr>
-										<td>${coordenador.getNome()}</td>
-										<td><a href="EditarCoordenador?id=${coordenador.getId()}" >editar</a></td>
-										<td><a href="inserirCoordenador?id=${coordenador.getId()}" >delete</a></td>										
-									</tr>
-									</c:forEach>
-								</table>
-							</div></td>
-					</tr>
-				</table>
-			</div>
+			<form class="col s3" action="EditarCoordenador" method="POST">
+				<div class="row">
+					<div class="input-field col s3">
+						<input required="required" name="idCoordenador" id="first_name" type="text"
+							class="validate" value="${idCoordenador}"> <label for="first_name">id</label>
+					</div>
+
+				</div>
+				
+				<div class="row">
+					<div class="input-field col s3">
+						<input required="required" name="nome" id="first_name" type="text"
+							class="validate" value="${nomeCoordenador}"> <label for="first_name">Nome</label>
+					</div>
+
+				</div>
+
+				<div class="row">
+					<button class="btn waves-effect waves-light" type="submit"
+						name="action">Editar</button>
+				</div>
+				<p>${mensagem}</p>
+			</form>
+
 		</div>
 
 
