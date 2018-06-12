@@ -32,6 +32,19 @@ public class SalaDao {
 			e.printStackTrace();
 		}
 	}
+	
+	public void update(Sala sala) {
+		try (PreparedStatement stmt = conexao.getConnection()
+				.prepareStatement("UPDATE sala SET nome = ?, bloco = ?, tipo_sala = ? WHERE id = ?;");) {
+			stmt.setString(1, sala.getNome());
+			stmt.setString(2, sala.getBloco());
+			stmt.setInt(3, sala.getTipoSala().getCodigo());
+			stmt.setInt(4, sala.getId());
+			stmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public ArrayList<Sala> getLista() {
 		List<Sala> salas = new ArrayList<>();

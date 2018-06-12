@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gestao_horario_aulas.model.Coordenador;
+import br.com.gestao_horario_aulas.model.Curso;
 import br.com.gestao_horario_aulas.model.Disciplina;
 import br.com.gestao_horario_aulas.util.Conexao;
 
@@ -32,20 +34,33 @@ public class DisciplinaDao {
 		}
 	}
 	
-	public void name() {
-		
+	public void update(Disciplina disciplina) {
+		try (PreparedStatement stmt = conexao.getConnection()
+				.prepareStatement("UPDATE disciplina SET nome = ?, id_curso = ? WHERE id = ?;");) {
+			stmt.setString(1, disciplina.getNome());
+			stmt.setInt(2, disciplina.getCurso().getId());
+			stmt.setInt(3, disciplina.getId());
+			stmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public ArrayList<Disciplina> getLista() {
 		List<Disciplina> disciplinas = new ArrayList<>();
-		try (PreparedStatement stmt = conexao.getConnection().prepareStatement("SELECT * FROM disciplina;");
+		try (PreparedStatement stmt = conexao.getConnection().prepareStatement("SELECT * FROM disciplina as d inner join curso as c on (c.id = d.id_curso);");
 				ResultSet rs = stmt.executeQuery()) {
 			while (rs.next()) {
-				CursoDao cdao = new CursoDao();
+				Curso c = new Curso();
 				Disciplina disciplina = new Disciplina();
-				disciplina.setId(rs.getInt("id"));
-				disciplina.setNome(rs.getString("nome"));
-				disciplina.setCurso(cdao.findById(rs.getInt("id_curso")));
+				Coordenador coo = new Coordenador();
+				disciplina.setId(rs.getInt(1));
+				disciplina.setNome(rs.getString(3));
+				c.setId(rs.getInt(4));
+				c.setNome(rs.getString(5));
+				coo.setId(rs.getInt(6));
+				c.setCoordenador(coo);
+				disciplina.setCurso(c);
 				disciplinas.add(disciplina);
 			}
 
@@ -59,13 +74,18 @@ public class DisciplinaDao {
 	public Disciplina findById(Integer id) { 
 	Disciplina disciplina = new Disciplina();
 	try (PreparedStatement stmt = conexao.getConnection()
-			.prepareStatement("SELECT * FROM disciplina WHERE id = " + id +";"); 
+			.prepareStatement("SELECT * FROM disciplina as d inner join curso as c on (c.id = d.id_curso AND d.id = "+id+");"); 
 			ResultSet rs = stmt.executeQuery()) {
 		while (rs.next()) {
-			CursoDao cdao = new CursoDao();
-			disciplina.setId(rs.getInt("id"));
-			disciplina.setNome(rs.getString("nome"));
-			disciplina.setCurso(cdao.findById(rs.getInt("id_curso")));
+			Curso c = new Curso();
+			Coordenador coo = new Coordenador();
+			disciplina.setId(rs.getInt(1));
+			disciplina.setNome(rs.getString(3));
+			c.setId(rs.getInt(4));
+			c.setNome(rs.getString(5));
+			coo.setId(rs.getInt(6));
+			c.setCoordenador(coo);
+			disciplina.setCurso(c);
 		}
 	} catch (SQLException e) {
 		e.printStackTrace();
@@ -75,14 +95,19 @@ public class DisciplinaDao {
 
 	public ArrayList<Disciplina> findByNome(String nome) {
 		List<Disciplina> disciplinas = new ArrayList<>();
-		try (PreparedStatement stmt = conexao.getConnection().prepareStatement("SELECT * FROM disciplina WHERE nome = '" + nome +"';");
+		try (PreparedStatement stmt = conexao.getConnection().prepareStatement("SELECT * FROM disciplina as d inner join curso as c on (c.id = d.id_curso AND d.id = '"+nome+"');");
 				ResultSet rs = stmt.executeQuery()) {
 			while (rs.next()) {
-				CursoDao cdao = new CursoDao();
+				Curso c = new Curso();
+				Coordenador coo = new Coordenador();
 				Disciplina disciplina = new Disciplina();
-				disciplina.setId(rs.getInt("id"));
-				disciplina.setNome(rs.getString("nome"));
-				disciplina.setCurso(cdao.findById(rs.getInt("id_curso")));
+				disciplina.setId(rs.getInt(1));
+				disciplina.setNome(rs.getString(3));
+				c.setId(rs.getInt(4));
+				c.setNome(rs.getString(5));
+				coo.setId(rs.getInt(6));
+				c.setCoordenador(coo);
+				disciplina.setCurso(c);
 				disciplinas.add(disciplina);
 			}
 
@@ -94,14 +119,19 @@ public class DisciplinaDao {
 
 	public ArrayList<Disciplina> findByCurso(Integer cursoId) {
 		List<Disciplina> disciplinas = new ArrayList<>();
-		try (PreparedStatement stmt = conexao.getConnection().prepareStatement("SELECT * FROM disciplina WHERE id_curso = " + cursoId +";");
+		try (PreparedStatement stmt = conexao.getConnection().prepareStatement("SELECT * FROM disciplina as d inner join curso as c on (c.id = d.id_curso AND c.id = "+cursoId+");");
 				ResultSet rs = stmt.executeQuery()) {
 			while (rs.next()) {
-				CursoDao cdao = new CursoDao();
+				Curso c = new Curso();
+				Coordenador coo = new Coordenador();
 				Disciplina disciplina = new Disciplina();
-				disciplina.setId(rs.getInt("id"));
-				disciplina.setNome(rs.getString("nome"));
-				disciplina.setCurso(cdao.findById(rs.getInt("id_curso")));
+				disciplina.setId(rs.getInt(1));
+				disciplina.setNome(rs.getString(3));
+				c.setId(rs.getInt(4));
+				c.setNome(rs.getString(5));
+				coo.setId(rs.getInt(6));
+				c.setCoordenador(coo);
+				disciplina.setCurso(c);
 				disciplinas.add(disciplina);
 			}
 

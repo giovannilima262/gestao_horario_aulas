@@ -31,6 +31,17 @@ public class CoordenadorDao {
 			e.printStackTrace();
 		} 
 	}
+	
+	public void update(Coordenador coordenador) {
+		try (PreparedStatement stmt = conexao.getConnection()
+				.prepareStatement("UPDATE coordenador SET nome = ? WHERE id = ?;");) {
+			stmt.setString(1, coordenador.getNome());
+			stmt.setInt(2, coordenador.getId());
+			stmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} 
+	}
 
 	public ArrayList<Coordenador> getLista() {
 		List<Coordenador> coordenadores = new ArrayList<>();

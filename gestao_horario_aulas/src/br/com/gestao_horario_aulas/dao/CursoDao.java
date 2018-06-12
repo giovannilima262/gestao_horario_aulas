@@ -32,6 +32,17 @@ public class CursoDao {
 			e.printStackTrace();
 		}
 	}
+	
+	public void update(Curso curso) {
+		try (PreparedStatement stmt = conexao.getConnection()
+				.prepareStatement("UPDATE curso SET id_coordenador = ?, nome = ? WHERE id = ?;");) {
+			stmt.setInt(1, curso.getCoordenador().getId());
+			stmt.setString(2, curso.getNome());
+			stmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public ArrayList<Curso> getLista() {
 		List<Curso> cursos = new ArrayList<>();

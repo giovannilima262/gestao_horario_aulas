@@ -31,6 +31,18 @@ public class ProfessorDao {
 			e.printStackTrace();
 		}
 	}
+	
+	public void update(Professor professor) {
+		try (PreparedStatement stmt = conexao.getConnection()
+				.prepareStatement("UPDATE professor SET nome = ?, cpf = ? WHERE id = ?;");) {
+			stmt.setString(1, professor.getNome());
+			stmt.setString(2, professor.getCpf());
+			stmt.setInt(3, professor.getId());
+			stmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public ArrayList<Professor> getLista() {
 		List<Professor> professores = new ArrayList<>();
