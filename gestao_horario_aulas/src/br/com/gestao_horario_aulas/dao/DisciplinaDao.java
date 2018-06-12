@@ -143,12 +143,9 @@ public class DisciplinaDao {
 	}
 
 
-	public void delete(Integer id) {
-		try (PreparedStatement stmt = conexao.getConnection().prepareStatement("DELETE FROM disciplina WHERE id =" + id)) {
-			stmt.execute();
-		} catch (SQLException e) {
-			new RuntimeException(e);
-		}
-	
+	public void delete(Integer id) throws SQLException {
+		PreparedStatement stmt = conexao.getConnection().prepareStatement("DELETE FROM disciplina WHERE id =" + id);
+		stmt.execute();
+		stmt.close();
 	}
 }

@@ -1,6 +1,7 @@
 package br.com.gestao_horario_aulas.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,10 +31,13 @@ public class InserirSalasController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String id = req.getParameter("id");
-
-		salaDao.delete(Integer.parseInt(id));
+		try{
+			salaDao.delete(Integer.parseInt(id));
+		}catch (SQLException e) {
+			req.setAttribute("mensagemErro", "Não é possivel deletar");
+			req.getRequestDispatcher("./listaSalas.jsp").forward(req, resp);
+		}
 		resp.sendRedirect("./listaSalas.jsp");
 	}
 

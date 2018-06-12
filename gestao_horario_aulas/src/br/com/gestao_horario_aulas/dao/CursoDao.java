@@ -32,7 +32,7 @@ public class CursoDao {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void update(Curso curso) {
 		try (PreparedStatement stmt = conexao.getConnection()
 				.prepareStatement("UPDATE curso SET id_coordenador = ?, nome = ? WHERE id = ?;");) {
@@ -46,7 +46,8 @@ public class CursoDao {
 
 	public ArrayList<Curso> getLista() {
 		List<Curso> cursos = new ArrayList<>();
-		try (PreparedStatement stmt = conexao.getConnection().prepareStatement("SELECT * FROM curso as c inner join coordenador as coo on (coo.id = c.id_coordenador);");
+		try (PreparedStatement stmt = conexao.getConnection().prepareStatement(
+				"SELECT * FROM curso as c inner join coordenador as coo on (coo.id = c.id_coordenador);");
 				ResultSet rs = stmt.executeQuery()) {
 			while (rs.next()) {
 				Curso curso = new Curso();
@@ -67,8 +68,9 @@ public class CursoDao {
 
 	public Curso findById(Integer id) {
 		Curso curso = new Curso();
-		try (PreparedStatement stmt = conexao.getConnection()
-				.prepareStatement("SELECT * FROM curso as c inner join coordenador as coo on (coo.id = c.id_coordenador AND c.id = "+id+");"); 
+		try (PreparedStatement stmt = conexao.getConnection().prepareStatement(
+				"SELECT * FROM curso as c inner join coordenador as coo on (coo.id = c.id_coordenador AND c.id = " + id
+						+ ");");
 				ResultSet rs = stmt.executeQuery();) {
 			while (rs.next()) {
 				Coordenador c = new Coordenador();
@@ -86,8 +88,9 @@ public class CursoDao {
 
 	public Curso findByNome(String nome) {
 		Curso curso = new Curso();
-		try (PreparedStatement stmt = conexao.getConnection()
-				.prepareStatement("SELECT * FROM curso as c inner join coordenador as coo on (coo.id = c.id_coordenador AND c.nome = '"+nome+"');");
+		try (PreparedStatement stmt = conexao.getConnection().prepareStatement(
+				"SELECT * FROM curso as c inner join coordenador as coo on (coo.id = c.id_coordenador AND c.nome = '"
+						+ nome + "');");
 				ResultSet rs = stmt.executeQuery();) {
 			while (rs.next()) {
 				Coordenador c = new Coordenador();
@@ -102,16 +105,16 @@ public class CursoDao {
 		}
 		return curso;
 	}
-	
+
 	public ArrayList<String> disciplinaPorCurso() {
 		ArrayList<String> mensagens = new ArrayList<>();
-		try (PreparedStatement stmt = conexao.getConnection()
-				.prepareStatement("SELECT c.nome, count(d) FROM disciplina as d inner join curso as c on (c.id = d.id_curso) group by c.nome;");
+		try (PreparedStatement stmt = conexao.getConnection().prepareStatement(
+				"SELECT c.nome, count(d) FROM curso as c inner join disciplina  as d on (c.id = d.id_curso) group by c.nome;");
 				ResultSet rs = stmt.executeQuery();) {
-			
+
 			while (rs.next()) {
 				String mensagem = new String();
-				mensagem = rs.getString(1)+": "+rs.getInt(2)+" disciplinas.";
+				mensagem = rs.getString(1) + ": " + rs.getInt(2) + " disciplinas.";
 				mensagens.add(mensagem);
 			}
 		} catch (SQLException e) {
@@ -120,11 +123,9 @@ public class CursoDao {
 		return mensagens;
 	}
 
-	public void delete(Integer id) {
-		try (PreparedStatement stmt = conexao.getConnection().prepareStatement("DELETE FROM curso WHERE id =" + id)) {
-			stmt.execute();
-		} catch (SQLException e) {
-			new RuntimeException(e);
-		}
+	public void delete(Integer id) throws SQLException {
+		PreparedStatement stmt = conexao.getConnection().prepareStatement("DELETE FROM curso WHERE id =" + id);
+		stmt.execute();
+		stmt.close();
 	}
 }

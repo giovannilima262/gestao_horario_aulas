@@ -6,6 +6,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.GenericServlet;
+
+import org.postgresql.util.PSQLException;
+
+import br.com.gestao_horario_aulas.controller.InserirCoordenadorController;
 import br.com.gestao_horario_aulas.model.Coordenador;
 import br.com.gestao_horario_aulas.model.Curso;
 import br.com.gestao_horario_aulas.util.Conexao;
@@ -93,12 +98,11 @@ public class CoordenadorDao {
 		return (ArrayList<Coordenador>) coordenadores;
 	}
 
-	public void delete(Integer id) {
-		try (PreparedStatement stmt = conexao.getConnection().prepareStatement("DELETE FROM coordenador WHERE id = "+id+";");) {
-			stmt.executeQuery();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+	public void delete(Integer id) throws SQLException{
+		PreparedStatement stmt = conexao.getConnection().prepareStatement("DELETE FROM coordenador WHERE id = "+id+";");
+		stmt.executeQuery();
+		stmt.close();
+		
 	}
 
 	public Coordenador obterCoordenador(String user, String senha) {

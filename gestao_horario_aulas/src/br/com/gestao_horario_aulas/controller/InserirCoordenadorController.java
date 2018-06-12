@@ -1,6 +1,7 @@
 package br.com.gestao_horario_aulas.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +31,12 @@ public class InserirCoordenadorController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 			String id = req.getParameter("id");
-			coordenadorDao.delete(Integer.parseInt(id));
+			try{
+				coordenadorDao.delete(Integer.parseInt(id));
+			}catch (SQLException e) {
+				req.setAttribute("mensagemErro", "Não é possivel deletar");
+				req.getRequestDispatcher("./listaCoordenadores.jsp").forward(req, resp);
+			}
 			resp.sendRedirect("./listaCoordenadores.jsp");
 	}
 
@@ -48,6 +54,10 @@ public class InserirCoordenadorController extends HttpServlet {
 
 	public List<Coordenador> getCoordenadores() {
 		return coordenadores;
+	}
+	
+	public void deleteException() {
+		
 	}
 
 	public void setCoordenadores(List<Coordenador> coordenadores) {

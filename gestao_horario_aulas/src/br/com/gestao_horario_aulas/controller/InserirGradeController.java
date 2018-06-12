@@ -1,6 +1,7 @@
 package br.com.gestao_horario_aulas.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,10 +45,13 @@ public class InserirGradeController extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String id = req.getParameter("id");
-
-		gradeDao.delete(Integer.parseInt(id));
+		try{
+			gradeDao.delete(Integer.parseInt(id));
+		}catch (SQLException e) {
+			req.setAttribute("mensagemErro", "Não é possivel deletar");
+			req.getRequestDispatcher("./listaGrades.jsp").forward(req, resp);
+		}
 		resp.sendRedirect("./listaGrades.jsp");
 	}
 

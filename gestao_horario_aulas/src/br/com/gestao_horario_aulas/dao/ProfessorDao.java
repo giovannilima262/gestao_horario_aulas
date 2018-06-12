@@ -100,12 +100,9 @@ public class ProfessorDao {
 		return (ArrayList<Professor>) professores;
 	}
 
-	public void delete(Integer id) {
-		try (PreparedStatement stmt = conexao.getConnection().prepareStatement("DELETE FROM professor WHERE id = "+id+";");) {
-			stmt.executeQuery();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+	public void delete(Integer id) throws SQLException {
+		PreparedStatement stmt = conexao.getConnection().prepareStatement("DELETE FROM professor WHERE id = "+id+";");
+		stmt.executeQuery();
+		stmt.close();
 	}
-
 }

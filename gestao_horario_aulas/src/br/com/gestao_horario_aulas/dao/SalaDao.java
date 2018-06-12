@@ -130,12 +130,10 @@ public class SalaDao {
 		return (ArrayList<Sala>) salas;
 	}
 
-	public void delete(Integer id) {
-		try (PreparedStatement stmt = conexao.getConnection()
-				.prepareStatement("DELETE FROM sala WHERE id = " + id + ";");) {
+	public void delete(Integer id) throws SQLException {
+		PreparedStatement stmt = conexao.getConnection()
+				.prepareStatement("DELETE FROM sala WHERE id = " + id + ";");
 			stmt.executeQuery();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+			stmt.close();
 	}
 }

@@ -52,6 +52,7 @@
 			<li><a href="listaCursos.jsp">Cursos</a></li>
 			<li><a href="listaCoordenadores.jsp">Coordenadores</a></li>
 			<li><a href="">Horários</a></li>
+			<li><a href="estatisticas.jsp">Estatistica</a></li>
 		</ul>
 	</div>
 	</nav>
@@ -89,6 +90,7 @@
 										</tr>
 									</c:forEach>
 								</table>
+								<p>${mensagemErro}</p>
 							</div></td>
 					</tr>
 				</table>

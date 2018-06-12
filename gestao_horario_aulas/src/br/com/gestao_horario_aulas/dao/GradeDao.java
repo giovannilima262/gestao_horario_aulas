@@ -33,7 +33,7 @@ public class GradeDao {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void update(Grade grade) {
 		try (PreparedStatement stmt = conexao.getConnection()
 				.prepareStatement("UPDATE grade SET nome = ?, id_curso = ?, ano_semestre_ini = ? WHERE id = ?;");) {
@@ -49,7 +49,8 @@ public class GradeDao {
 
 	public ArrayList<Grade> getLista() {
 		List<Grade> grades = new ArrayList<>();
-		try (PreparedStatement stmt = conexao.getConnection().prepareStatement("SELECT * FROM grade as g inner join curso as c on (c.id = g.id_curso);");
+		try (PreparedStatement stmt = conexao.getConnection()
+				.prepareStatement("SELECT * FROM grade as g inner join curso as c on (c.id = g.id_curso);");
 				ResultSet rs = stmt.executeQuery()) {
 			while (rs.next()) {
 				Curso c = new Curso();
@@ -73,32 +74,33 @@ public class GradeDao {
 
 	}
 
-	public Grade findById(Integer id) { 
-	Grade grade = new Grade();
-	try (PreparedStatement stmt = conexao.getConnection()
-			.prepareStatement("SELECT * FROM grade as g inner join curso as c on (c.id = g.id_curso AND g.id = "+ id +");"); 
-			ResultSet rs = stmt.executeQuery()) {
-		while (rs.next()) {
-			Curso c = new Curso();
-			Coordenador coo = new Coordenador();
-			grade.setId(rs.getInt(1));
-			grade.setNome(rs.getString(3));
-			grade.setAnoSemestreInicio(rs.getString(4));
-			c.setId(rs.getInt(6));
-			c.setNome(rs.getString(7));
-			coo.setId(8);
-			c.setCoordenador(coo);
-			grade.setCurso(c);
+	public Grade findById(Integer id) {
+		Grade grade = new Grade();
+		try (PreparedStatement stmt = conexao.getConnection().prepareStatement(
+				"SELECT * FROM grade as g inner join curso as c on (c.id = g.id_curso AND g.id = " + id + ");");
+				ResultSet rs = stmt.executeQuery()) {
+			while (rs.next()) {
+				Curso c = new Curso();
+				Coordenador coo = new Coordenador();
+				grade.setId(rs.getInt(1));
+				grade.setNome(rs.getString(3));
+				grade.setAnoSemestreInicio(rs.getString(4));
+				c.setId(rs.getInt(6));
+				c.setNome(rs.getString(7));
+				coo.setId(8);
+				c.setCoordenador(coo);
+				grade.setCurso(c);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-	} catch (SQLException e) {
-		e.printStackTrace();
+		return grade;
 	}
-	return grade;
-}
 
 	public ArrayList<Grade> findByNome(String nome) {
 		List<Grade> grades = new ArrayList<>();
-		try (PreparedStatement stmt = conexao.getConnection().prepareStatement("SELECT * FROM grade as g inner join curso as c on (c.id = g.id_curso AND g.id = '"+ nome+"');");
+		try (PreparedStatement stmt = conexao.getConnection().prepareStatement(
+				"SELECT * FROM grade as g inner join curso as c on (c.id = g.id_curso AND g.id = '" + nome + "');");
 				ResultSet rs = stmt.executeQuery()) {
 			while (rs.next()) {
 				Curso c = new Curso();
@@ -123,7 +125,8 @@ public class GradeDao {
 
 	public ArrayList<Grade> findByCurso(Integer cursoId) {
 		List<Grade> grades = new ArrayList<>();
-		try (PreparedStatement stmt = conexao.getConnection().prepareStatement("SELECT * FROM grade as g inner join curso as c on (c.id = g.id_curso AND c.id = "+ cursoId +");");
+		try (PreparedStatement stmt = conexao.getConnection().prepareStatement(
+				"SELECT * FROM grade as g inner join curso as c on (c.id = g.id_curso AND c.id = " + cursoId + ");");
 				ResultSet rs = stmt.executeQuery()) {
 			while (rs.next()) {
 				Curso c = new Curso();
@@ -144,16 +147,12 @@ public class GradeDao {
 			e.printStackTrace();
 		}
 		return (ArrayList<Grade>) grades;
-	
+
 	}
 
-
-	public void delete(Integer id) {
-		try (PreparedStatement stmt = conexao.getConnection().prepareStatement("DELETE FROM grade WHERE id =" + id)) {
-			stmt.execute();
-		} catch (SQLException e) {
-			new RuntimeException(e);
-		}
-	
+	public void delete(Integer id)throws SQLException {
+		PreparedStatement stmt = conexao.getConnection().prepareStatement("DELETE FROM grade WHERE id =" + id);
+		stmt.execute();
+		stmt.close();
 	}
 }

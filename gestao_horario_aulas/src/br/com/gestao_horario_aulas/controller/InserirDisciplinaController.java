@@ -1,6 +1,7 @@
 package br.com.gestao_horario_aulas.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,8 +32,15 @@ public class InserirDisciplinaController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String id = req.getParameter("id");
 		DisciplinaDao disciplinad = new DisciplinaDao();
-		disciplinad.delete(Integer.parseInt(id));
+		
+		try{
+			disciplinad.delete(Integer.parseInt(id));
+		}catch (SQLException e) {
+			req.setAttribute("mensagemErro", "Não é possivel deletar");
+			req.getRequestDispatcher("./listaDisciplinas.jsp").forward(req, resp);
+		}
 		resp.sendRedirect("./listaDisciplinas.jsp");
+
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

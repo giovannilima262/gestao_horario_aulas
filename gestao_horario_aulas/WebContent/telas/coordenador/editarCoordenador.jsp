@@ -48,6 +48,7 @@
 			<li><a href="listaGrades.jsp">Grade</a></li>
 			<li><a href="listaCursos.jsp">Cursos</a></li>
 			<li><a href="">Horários</a></li>
+			<li><a href="estatisticas.jsp">Estatistica</a></li>
 		</ul>
 	</div>
 	</nav>
@@ -73,7 +74,7 @@
 				<div class="row">
 					<div class="input-field col s3">
 						<input required="required" name="idCoordenador" id="first_name" type="text"
-							class="validate" value="${idCoordenador}"> <label for="first_name">id</label>
+							class="validate" value="${idCoordenador}" readonly> <label for="first_name">id</label>
 					</div>
 
 				</div>
