@@ -1,19 +1,19 @@
 package br.com.gestao_horario_aulas.model;
 
 import br.com.gestao_horario_aulas.enums.DiaSemanaEnum;
-import br.com.gestao_horario_aulas.enums.HoraEnum;
+import br.com.gestao_horario_aulas.enums.HoraEnumInicio;
 
 public class Horario {
-	private HoraEnum hora;
+	private HoraEnumInicio hora;
 	private DiaSemanaEnum diaSemana;
 	private Disciplina disciplina;
 	private Professor professor;
 	private Sala sala;
-	public HoraEnum getHora() {
+	public HoraEnumInicio getHora() {
 		return hora;
 	}
 
-	public void setHora(HoraEnum hora) {
+	public void setHora(HoraEnumInicio hora) {
 		this.hora = hora;
 	}
 

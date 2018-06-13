@@ -53,6 +53,7 @@
 			<li><a href="listaCoordenadores.jsp">Coordenadores</a></li>
 			<li><a href="listaHorarios.jsp">Horários</a></li>
 			<li><a href="estatisticas.jsp">Estatistica</a></li>
+			<li><a href="horario.jsp">Horário</a></li>
 		</ul>
 	</div>
 	</nav>
@@ -61,7 +62,7 @@
 		<div class="fc-toolbar">
 
 			<div class="fc-center">
-				<h2>Grades</h2>
+				<h2>Horários</h2>
 			</div>
 		</div>
 		<div>
@@ -85,15 +86,7 @@
 										<th></th>
 									</tr>
 
-									<c:forEach var="horario"
-										items="${horarioController.getHorarios()}">
-										<tr>
-											<td>${horario.get()}</td>
-											<td></td>
-											<td><a href="inserirGrade?id=${grade.getId()}">delete</a></td>
-										</tr>
-									</c:forEach>
-
+								
 								</table>
 								<p>${mensagemErro}</p>
 							</div></td>

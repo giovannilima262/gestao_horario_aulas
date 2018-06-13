@@ -7,9 +7,18 @@ public class Aula {
 	private Sala sala;
 	private Integer dia;
 	private Integer horario;
+	private Integer quantidadeAulas;
 
 	public Aula(Disciplina materia) {
 		this.disciplina = materia;
+	}
+	
+	public Aula(Integer hora, Integer dia, Professor professor, Disciplina disciplina, Sala sala){
+		this.horario = hora;
+		this.dia = dia;
+		this.professor = professor;
+		this.disciplina = disciplina;
+		this.sala = sala;
 	}
 	
 	public Aula() {
@@ -68,6 +77,14 @@ public class Aula {
 	public boolean equals(Object arg0) {
 		Aula outra = (Aula) arg0;
 		return this.getId().equals(outra.getId());
+	}
+
+	public Integer getQuantidadeAulas() {
+		return quantidadeAulas;
+	}
+
+	public void setQuantidadeAulas(Integer quantidadeAulas) {
+		this.quantidadeAulas = quantidadeAulas;
 	}
 
 }
