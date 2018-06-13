@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Sala</title>
+<title>Lista de Horários</title>
 <!--Import Google Icon Font-->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
@@ -20,6 +21,8 @@
 	<jsp:useBean id="coordenador" scope="session"
 		class="br.com.gestao_horario_aulas.model.Coordenador"></jsp:useBean>
 
+	<jsp:useBean id="horarioController" scope="page"
+		class="br.com.gestao_horario_aulas.controller.InserirHorarioController"></jsp:useBean>
 	<nav>
 	<div style="background: #3a3a3a;" class="nav-wrapper">
 		<img style="height: 100%; margin-left: 25px; margin-right: 25px;"
@@ -53,70 +56,50 @@
 		</ul>
 	</div>
 	</nav>
-	<nav style="background: #3a3a3a;">
-	<div class="nav-wrapper" style="margin-left: 50px;">
-		<div class="col s12">
-			<a href="listaSalas.jsp" class="breadcrumb">Salas</a><a
-				class="breadcrumb">Inserir</a>
-
-		</div>
-	</div>
-	</nav>
 
 	<div id="calendar" style="margin: 50px;">
 		<div class="fc-toolbar">
 
 			<div class="fc-center">
-				<h2>Sala</h2>
+				<h2>Grades</h2>
 			</div>
 		</div>
 		<div>
-			<form class="col s3" action="inserirSala" method="POST">
-				<div class="col">
-					<label>Bloco</label>
+			<div class="row">
+				<button class="btn waves-effect waves-light" name="action">
+					<a style="color: white" href="grade.jsp">Inserir</a>
+				</button>
+			</div>
+			<div>
+				<table>
+					<tr>
+						<td><div>
+								<table>
+									<tr>
+										<th>Horário</th>
+										<th>Dia da Semana</th>
+										<th>Disciplina</th>
+										<th>Professor</th>
+										<th>Sala</th>
+										<th></th>
+										<th></th>
+									</tr>
 
-				</div>
-				<div class="row">
-					<div class="input-field col s3">
-						<select required="required" name="bloco" class="browser-default">
-							<option value="" disabled selected>Selecione</option>
-							<option value="A">A</option>
-							<option value="B">B</option>
-						</select>
+									<c:forEach var="horario"
+										items="${horarioController.getHorarios()}">
+										<tr>
+											<td>${horario.get()}</td>
+											<td></td>
+											<td><a href="inserirGrade?id=${grade.getId()}">delete</a></td>
+										</tr>
+									</c:forEach>
 
-					</div>
-				</div>
-				<div class="col">
-					<label>Tipo da Sala</label>
-
-				</div>
-				<div class="row">
-					<div class="input-field col s3">
-						<select required="required" name="tipo" class="browser-default">
-							<option value="" disabled selected>Selecione</option>
-							<option value="1">Lami</option>
-							<option value="2">Sala</option>
-							<option value="3">Auditório</option>
-						</select>
-
-					</div>
-				</div>
-				<div class="row">
-					<div class="input-field col s3">
-						<input required="required" name="nome" id="first_name" type="text"
-							class="validate"> <label for="first_name">Nome</label>
-
-					</div>
-
-				</div>
-
-				<div class="row">
-					<button class="btn waves-effect waves-light" type="submit"
-						name="action">Cadastrar</button>
-				</div>
-				<p>${mensagem}</p>
-			</form>
-
+								</table>
+								<p>${mensagemErro}</p>
+							</div></td>
+					</tr>
+				</table>
+			</div>
 		</div>
 
 

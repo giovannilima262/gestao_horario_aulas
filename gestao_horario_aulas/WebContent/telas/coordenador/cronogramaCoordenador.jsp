@@ -10,7 +10,8 @@
 	rel="stylesheet">
 <!--Import materialize.css-->
 <link type="text/css" rel="stylesheet"
-	href="../../materialize/css/materialize.min.css" media="screen,projection" />
+	href="../../materialize/css/materialize.min.css"
+	media="screen,projection" />
 
 <!--Let browser know website is optimized for mobile-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -39,17 +40,17 @@
 	</nav>
 	<nav style="background: #3a3a3a;">
 	<div class="nav-wrapper" style="margin-left: 50px;">
-	    <ul class="left hide-on-med-and-down">
-	      <li><a href="cronogramaCoordenador.jsp">Início</a></li>
-	      <li><a href="listaSalas.jsp">Sala</a></li>
-	      <li><a href="listaDisciplinas.jsp">Disciplina</a></li>
-	      <li><a href="listaProfessores.jsp">Professor</a></li>
-	      <li><a href="listaGrades.jsp">Grade</a></li>
-	      <li><a href="listaCursos.jsp">Cursos</a></li>
-	      <li><a href="listaCoordenadores.jsp">Coordenadores</a></li>
-	      <li><a href="">Horários</a></li>
-	      <li><a href="estatisticas.jsp">Estatistica</a></li>
-	   	</ul>
+		<ul class="left hide-on-med-and-down">
+			<li><a href="cronogramaCoordenador.jsp">Início</a></li>
+			<li><a href="listaSalas.jsp">Sala</a></li>
+			<li><a href="listaDisciplinas.jsp">Disciplina</a></li>
+			<li><a href="listaProfessores.jsp">Professor</a></li>
+			<li><a href="listaGrades.jsp">Grade</a></li>
+			<li><a href="listaCursos.jsp">Cursos</a></li>
+			<li><a href="listaCoordenadores.jsp">Coordenadores</a></li>
+			<li><a href="listaHorarios.jsp">Horários</a></li>
+			<li><a href="estatisticas.jsp">Estatistica</a></li>
+		</ul>
 	</div>
 	</nav>
 
