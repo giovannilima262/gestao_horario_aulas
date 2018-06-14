@@ -46,7 +46,7 @@ public class EditarCoordenadorController extends HttpServlet {
 		
 		if (Util.isEmptyOrNull(nome)) {
 			request.setAttribute("mensagem", "Todos os dados são obrigatórios para editar um Coordenador");
-			request.getRequestDispatcher("./coordenador.jsp").forward(request, response);
+			request.getRequestDispatcher("./editarCoordenador.jsp").forward(request, response);
 			return;
 		}
 		Coordenador coo = new Coordenador(nome);

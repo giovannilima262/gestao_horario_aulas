@@ -20,7 +20,7 @@ public class Conexao {
 
 	private Conexao() {
 		try {
-			connection = DriverManager.getConnection("jdbc:postgresql://localhost:6543/gerenciador_aulas", "postgres", "postgresql");
+			connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/gerenciador_aulas", "postgres", "postgresql");
 			//new LoadTables().creatScherma(connection);
 		} catch (SQLException e) {
 			System.out.println("Erro ao conectar com o banco: " + e.getMessage());

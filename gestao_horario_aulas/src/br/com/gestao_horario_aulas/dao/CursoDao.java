@@ -38,6 +38,7 @@ public class CursoDao {
 				.prepareStatement("UPDATE curso SET id_coordenador = ?, nome = ? WHERE id = ?;");) {
 			stmt.setInt(1, curso.getCoordenador().getId());
 			stmt.setString(2, curso.getNome());
+			stmt.setInt(3, curso.getId());
 			stmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
