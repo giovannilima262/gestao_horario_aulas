@@ -85,7 +85,7 @@
 										<tr>
 											<td>${disciplina.getNome()}</td>
 											<td>${disciplina.getCurso()}</td>
-											<td></td>
+											<td><a href="EditarDisciplina?id=${disciplina.getId()}" >editar</a></td>
 											<td><a href="inserirDisciplina?id=${disciplina.getId()}" >delete</a></td>										
 										</tr>
 									</c:forEach>

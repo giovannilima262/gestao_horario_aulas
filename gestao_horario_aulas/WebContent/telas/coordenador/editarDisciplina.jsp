@@ -21,8 +21,8 @@
 	<jsp:useBean id="coordenador" scope="session"
 		class="br.com.gestao_horario_aulas.model.Coordenador"></jsp:useBean>
 		
-	<jsp:useBean id="cursoController" scope="page"
-		class="br.com.gestao_horario_aulas.controller.EditarCursoController"></jsp:useBean>
+	<jsp:useBean id="disciplinaController" scope="page"
+		class="br.com.gestao_horario_aulas.controller.EditarDisciplinaController"></jsp:useBean>
 
 	<nav>
 	<div style="background: #3a3a3a;" class="nav-wrapper">
@@ -60,7 +60,7 @@
 	<nav style="background: #3a3a3a;">
 	<div class="nav-wrapper" style="margin-left: 50px;">
 		<div class="col s12">
-			<a href="listaCursos.jsp" class="breadcrumb">Cursos</a><a
+			<a href="listaDisciplinas.jsp" class="breadcrumb">Disciplinas</a><a
 				class="breadcrumb">Editar</a>
 
 		</div>
@@ -71,16 +71,16 @@
 		<div class="fc-toolbar">
 
 			<div class="fc-center">
-				<h2>Curso</h2>
+				<h2>Disciplina</h2>
 			</div>
 		</div>
 
 		<div>
-			<form class="col s3" action="EditarCurso" method="POST">
+			<form class="col s3" action="EditarDisciplina" method="POST">
 			<div class="row">
 			<div class="input-field col s3">
-				<input required="required" name="idCurso" id="first_name" type="text"
-					class="validate" value="${idCurso}" readonly="readonly"> <label for="first_name"></label>
+				<input required="required" name="idDisciplina" id="first_name" type="text"
+					class="validate" value="${idDisciplina}" readonly="readonly"> <label for="first_name"></label>
 
 			</div>
 
@@ -89,22 +89,22 @@
 			<div class="row">
 			<div class="input-field col s3">
 				<input required="required" name="nome" id="first_name" type="text"
-					class="validate" value="${nomeCurso}"> <label for="first_name">Nome</label>
+					class="validate" value="${nomeDisciplina}"> <label for="first_name">Nome</label>
 
 			</div>
 
 		</div>
 				<div class="col">
-					<label>Coordenador</label>
+					<label>Curso</label>
 
 				</div>
 				
 				<div class="row">
 					<div class="input-field col s3">
-						<select required="required" name="idCoordenador" class="browser-default">
-							<option value="${objCoordenador.getId()}" selected>${objCoordenador.getNome()} (Atual)</option>
-							<c:forEach var="coordenador" items="${cursoController.getCoordenadores()}">
-								<option value="${coordenador.getId()}">${coordenador.getNome()}</option>									
+						<select required="required" name="idCurso" class="browser-default">
+							<option value="${objCurso.getId()}" selected>${objCurso.getNome()} (Atual)</option>
+							<c:forEach var="cursos" items="${disciplinaController.getCursos()}">
+								<option value="${cursos.getId()}">${cursos.getNome()}</option>									
 							</c:forEach>
 						</select>
 

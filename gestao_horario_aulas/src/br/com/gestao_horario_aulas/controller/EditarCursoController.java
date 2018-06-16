@@ -1,6 +1,8 @@
 package br.com.gestao_horario_aulas.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.com.gestao_horario_aulas.dao.CoordenadorDao;
 import br.com.gestao_horario_aulas.dao.CursoDao;
 import br.com.gestao_horario_aulas.model.Coordenador;
 import br.com.gestao_horario_aulas.model.Curso;
@@ -22,9 +25,15 @@ public class EditarCursoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	private CursoDao cursoDao = new CursoDao();
+	private List<Coordenador> coordenadores = new ArrayList<>();
+	private CoordenadorDao coordenadorDao = new CoordenadorDao();
 
 	public CursoDao getCursoDao() {
 		return cursoDao;
+	}
+	
+	public EditarCursoController() {
+		coordenadores = coordenadorDao.getLista();
 	}
 	
 	@Override
@@ -53,6 +62,10 @@ public class EditarCursoController extends HttpServlet {
 		c.setId(Integer.parseInt(idCurso));		
 		cursoDao.update(c);
 		response.sendRedirect("./listaCursos.jsp");
+	}
+	
+	public List<Coordenador> getCoordenadores() {
+		return coordenadores;
 	}
 
 }

@@ -9,7 +9,6 @@ import java.util.List;
 import br.com.gestao_horario_aulas.model.Coordenador;
 import br.com.gestao_horario_aulas.model.Curso;
 import br.com.gestao_horario_aulas.model.Disciplina;
-import br.com.gestao_horario_aulas.model.Grade;
 import br.com.gestao_horario_aulas.util.Conexao;
 
 public class DisciplinaDao {

@@ -5,12 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.servlet.GenericServlet;
-
-import org.postgresql.util.PSQLException;
-
-import br.com.gestao_horario_aulas.controller.InserirCoordenadorController;
 import br.com.gestao_horario_aulas.model.Coordenador;
 import br.com.gestao_horario_aulas.model.Curso;
 import br.com.gestao_horario_aulas.util.Conexao;
