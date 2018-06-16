@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Sala</title>
+<title>Grade</title>
 <!--Import Google Icon Font-->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
@@ -20,9 +20,9 @@
 <body>
 	<jsp:useBean id="coordenador" scope="session"
 		class="br.com.gestao_horario_aulas.model.Coordenador"></jsp:useBean>
-		
-	<jsp:useBean id="disciplinaController" scope="page"
-		class="br.com.gestao_horario_aulas.controller.EditarDisciplinaController"></jsp:useBean>
+
+	<jsp:useBean id="gradeController" scope="page"
+		class="br.com.gestao_horario_aulas.controller.EditarGradeController"></jsp:useBean>
 
 	<nav>
 	<div style="background: #3a3a3a;" class="nav-wrapper">
@@ -60,7 +60,7 @@
 	<nav style="background: #3a3a3a;">
 	<div class="nav-wrapper" style="margin-left: 50px;">
 		<div class="col s12">
-			<a href="listaDisciplinas.jsp" class="breadcrumb">Disciplinas</a><a
+			<a href="listaGrades.jsp" class="breadcrumb">Grades</a><a
 				class="breadcrumb">Editar</a>
 
 		</div>
@@ -71,41 +71,70 @@
 		<div class="fc-toolbar">
 
 			<div class="fc-center">
-				<h2>Disciplina</h2>
+				<h2>Grade</h2>
 			</div>
 		</div>
-
 		<div>
-			<form class="col s3" action="EditarDisciplina" method="POST">
-			<div class="row">
-				<div class="input-field col s3">
-					<input required="required" name="idDisciplina" id="first_name" type="text"
-						class="validate" value="${idDisciplina}" readonly="readonly"> <label for="first_name"></label>
-	
-				</div>
-
-			</div>
+			<form class="col s3" action="EditarGrade" method="POST">
 			
 			<div class="row">
-			<div class="input-field col s3">
-				<input required="required" name="nome" id="first_name" type="text"
-					class="validate" value="${nomeDisciplina}"> <label for="first_name">Nome</label>
-
+				<div class="input-field col s3">
+					<input required="required" name="idGrade" id="first_name" type="text"
+						class="validate" value="${idGrade}" readonly="readonly"> <label for="first_name"></label>
+				</div>
 			</div>
-
-		</div>
+				
+				<div class="row">
+					<div class="input-field col s3">
+						<input required="required" name="nome" id="nome" type="text"
+							class="validate" value="${nomeGrade}"> <label for="nome">Nome</label>
+					</div>
+				</div>
 				<div class="col">
 					<label>Curso</label>
 
 				</div>
-				
 				<div class="row">
 					<div class="input-field col s3">
 						<select required="required" name="idCurso" class="browser-default">
 							<option value="${objCurso.getId()}" selected>${objCurso.getNome()} (Atual)</option>
-							<c:forEach var="cursos" items="${disciplinaController.getCursos()}">
-								<option value="${cursos.getId()}">${cursos.getNome()}</option>									
+							<c:forEach var="curso" items="${gradeController.getCursos()}">
+								<option value="${curso.getId()}">${curso.getNome()}</option>
 							</c:forEach>
+						</select>
+
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="input-field col s3">
+						<input required="required" name="semestreInicio" id="nome" type="text"
+							class="validate" value="${AnoInicioGrade}" readonly> <label for="semestreInicio">Semestre de Inicio</label>
+					</div>
+				</div>
+			
+				<div class="col">
+					<label>Semestre de Fim</label>
+				</div>
+				
+				<div class="row">
+					<div class="input-field col s3">
+						<select required="required" name="anoFim"
+							class="browser-default">
+							<option value="" disabled selected>Selecione</option>
+							<c:forEach var="cont" items="${gradeController.getSemestres()}">
+								<option value="${cont}">${cont}</option>
+							</c:forEach>
+						</select>
+
+					</div>
+					
+					<div class="input-field col s3">
+						<select required="required" name="semestreFim"
+							class="browser-default">
+							<option value="" disabled selected>Selecione</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
 						</select>
 
 					</div>
@@ -130,4 +159,3 @@
 
 </body>
 </html>
- 

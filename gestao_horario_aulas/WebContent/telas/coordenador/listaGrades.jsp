@@ -91,7 +91,7 @@
 											<td>${grade.getCurso().getNome()}</td>
 											<td>${grade.getAnoSemestreInicio()}</td>
 											<td>${grade.getAnoSemestreFim()}</td>
-											<td></td>
+											<td><a href="EditarGrade?id=${grade.getId()}">Editar</a></td>
 											<td><a href="inserirGrade?id=${grade.getId()}">delete</a></td>
 										</tr>
 									</c:forEach>

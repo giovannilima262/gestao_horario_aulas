@@ -36,10 +36,10 @@ public class GradeDao {
 
 	public void update(Grade grade) {
 		try (PreparedStatement stmt = conexao.getConnection()
-				.prepareStatement("UPDATE grade SET nome = ?, id_curso = ?, ano_semestre_ini = ? WHERE id = ?;");) {
+				.prepareStatement("UPDATE grade SET nome = ?, id_curso = ?, ano_semestre_fim = ? WHERE id = ?;");) {
 			stmt.setString(1, grade.getNome());
 			stmt.setInt(2, grade.getCurso().getId());
-			stmt.setString(3, grade.getAnoSemestreInicio());
+			stmt.setString(3, grade.getAnoSemestreFim());
 			stmt.setInt(4, grade.getId());
 			stmt.execute();
 		} catch (SQLException e) {
@@ -59,6 +59,7 @@ public class GradeDao {
 				grade.setId(rs.getInt(1));
 				grade.setNome(rs.getString(3));
 				grade.setAnoSemestreInicio(rs.getString(4));
+				grade.setAnoSemestreFim(rs.getString(5));
 				c.setId(rs.getInt(6));
 				c.setNome(rs.getString(7));
 				coo.setId(8);
