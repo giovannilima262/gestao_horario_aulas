@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Ucsal</title>
+<title>Lista de Professores</title>
 <!--Import Google Icon Font-->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
@@ -19,6 +20,9 @@
 <body>
 	<jsp:useBean id="coordenador" scope="session"
 		class="br.com.gestao_horario_aulas.model.Coordenador"></jsp:useBean>
+		
+	<jsp:useBean id="professorController" scope="page"
+		class="br.com.gestao_horario_aulas.controller.InserirProfessorController"></jsp:useBean>
 
 	<nav>
 	<div style="background: #3a3a3a;" class="nav-wrapper">
@@ -45,7 +49,6 @@
 			<li><a href="listaSalas.jsp">Sala</a></li>
 			<li><a href="listaDisciplinas.jsp">Disciplina</a></li>
 			<li><a href="listaProfessores.jsp">Professor</a></li>
-			<li><a href="listaProfessorDisciplinaGrade.jsp">Professor DG</a></li>
 			<li><a href="listaGrades.jsp">Grade</a></li>
 			<li><a href="listaCursos.jsp">Cursos</a></li>
 			<li><a href="listaCoordenadores.jsp">Coordenadores</a></li>
@@ -54,6 +57,50 @@
 		</ul>
 	</div>
 	</nav>
+
+	<div id="calendar" style="margin: 50px;">
+		<div class="fc-toolbar">
+
+			<div class="fc-center">
+				<h2>Professores Disciplina Grade</h2>
+			</div>
+		</div>
+		<div>
+			<div class="row">
+				<button class="btn waves-effect waves-light" name="action">
+					<a style="color: white" href="professorDisciplinaGrade.jsp">Inserir</a>
+				</button>
+			</div>
+			<div>
+				<table>
+					<tr>
+						<td><div>
+								<table>
+									<tr>
+										<th>Professor</th>
+										<th>Disciplina</th>
+										<th>Grade</th>
+										<th></th>
+										<th></th>
+									</tr>
+									<!--<c:forEach var="professor" items="${professorController.getProfessores()}">
+									<tr>
+										<td>${professor.getNome()}</td>
+										<td>${professor.getCpf()}</td>
+										<td></td>
+										<td><a href="inserirProfessor?id=${professor.getId()}" >delete</a></td>										
+									</tr>
+									</c:forEach>-->
+								</table>
+								<p>${mensagemErro}</p>
+							</div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+
+	</div>
 
 
 	<!--JavaScript at end of body for optimized loading-->

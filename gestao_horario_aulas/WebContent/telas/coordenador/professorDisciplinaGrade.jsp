@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Ucsal</title>
+<title>Professor Disciplina</title>
 <!--Import Google Icon Font-->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
@@ -45,7 +45,6 @@
 			<li><a href="listaSalas.jsp">Sala</a></li>
 			<li><a href="listaDisciplinas.jsp">Disciplina</a></li>
 			<li><a href="listaProfessores.jsp">Professor</a></li>
-			<li><a href="listaProfessorDisciplinaGrade.jsp">Professor DG</a></li>
 			<li><a href="listaGrades.jsp">Grade</a></li>
 			<li><a href="listaCursos.jsp">Cursos</a></li>
 			<li><a href="listaCoordenadores.jsp">Coordenadores</a></li>
@@ -54,6 +53,73 @@
 		</ul>
 	</div>
 	</nav>
+	<nav style="background: #3a3a3a;">
+	<div class="nav-wrapper" style="margin-left: 50px;">
+		<div class="col s12">
+			<a href="listaProfessores.jsp" class="breadcrumb">Professores</a><a
+				class="breadcrumb">Inserir</a>
+
+		</div>
+	</div>
+	</nav>
+
+	<div id="calendar" style="margin: 50px;">
+		<div class="fc-toolbar">
+
+			<div class="fc-center">
+				<h2>Professor</h2>
+			</div>
+		</div>
+		<div>
+			<form class="col s3" action="inserirProfessorDisciplinaGrade" method="POST">
+
+				<div class="row">
+					<div class="input-field col s3">
+						<select required="required" name="curso" class="browser-default">
+							<option value="" disabled selected>Selecione</option>
+							<c:forEach var="professor" items="">
+								<option value="${professor.getId()}">${professor.getNome()}</option>
+							</c:forEach>
+						</select>
+
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="input-field col s3">
+						<select required="required" name="curso" class="browser-default">
+							<option value="" disabled selected>Selecione</option>
+							<c:forEach var="disciplina" items="">
+								<option value="${disciplina.getId()}">${disciplina.getNome()}</option>
+							</c:forEach>
+						</select>
+
+					</div>
+				</div>
+				
+					<div class="row">
+					<div class="input-field col s3">
+						<select required="required" name="curso" class="browser-default">
+							<option value="" disabled selected>Selecione</option>
+							<c:forEach var="grade" items="">
+								<option value="${grade.getId()}">${grade.getNome()}</option>
+							</c:forEach>
+						</select>
+
+					</div>
+				</div>
+
+				<div class="row">
+					<button class="btn waves-effect waves-light" type="submit"
+						name="action">Cadastrar</button>
+				</div>
+				<p>${mensagem}</p>
+			</form>
+
+		</div>
+
+
+	</div>
 
 
 	<!--JavaScript at end of body for optimized loading-->
