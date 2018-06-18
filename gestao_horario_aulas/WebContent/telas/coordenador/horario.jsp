@@ -72,7 +72,7 @@
 		<div class="fc-toolbar">
 
 			<div class="fc-center">
-				<h2>Grade</h2>
+				<h2>Horário // TODO Falta o incluir do horário</h2>
 			</div>
 		</div>
 		<div>

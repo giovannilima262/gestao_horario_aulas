@@ -68,7 +68,7 @@
 		<div>
 			<div class="row">
 				<button class="btn waves-effect waves-light" name="action">
-					<a style="color: white" href="grade.jsp">Inserir</a>
+					<a style="color: white" href="horario.jsp">Inserir</a>
 				</button>
 			</div>
 			<div>
