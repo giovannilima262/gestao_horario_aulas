@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gestao_horario_aulas.model.DisciplinaGrade;
 import br.com.gestao_horario_aulas.model.Professor;
 import br.com.gestao_horario_aulas.util.Conexao;
 
@@ -26,6 +27,17 @@ public class ProfessorDao {
 				.prepareStatement("INSERT INTO professor (nome, cpf) VALUES (?,?);");) {
 			stmt.setString(1, professor.getNome());
 			stmt.setString(2, professor.getCpf());
+			stmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void insertPDG(Professor professor, DisciplinaGrade disciplinaGrade) {
+		try (PreparedStatement stmt = conexao.getConnection()
+				.prepareStatement("INSERT INTO professor_disciplina_grade (id_professor, id_disciplina_grade) values (?,?);");) {
+			stmt.setInt(1, professor.getId());
+			stmt.setInt(2, disciplinaGrade.getId());
 			stmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();

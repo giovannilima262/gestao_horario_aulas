@@ -8,10 +8,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.com.gestao_horario_aulas.dao.DisciplinaGradeDao;
+import br.com.gestao_horario_aulas.dao.ProfessorDao;
+import br.com.gestao_horario_aulas.util.Util;
+
 /**
  * Servlet implementation class InserirProfessorDisciplinaGradeController
  */
-@WebServlet("/InserirProfessorDisciplinaGradeController")
+@WebServlet("/telas/coordenador/InserirProfessorDisciplinaGrade")
 public class InserirProfessorDisciplinaGradeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -39,15 +43,17 @@ public class InserirProfessorDisciplinaGradeController extends HttpServlet {
 
     	protected void doPost(HttpServletRequest request, HttpServletResponse response)
     			throws ServletException, IOException {
-    		String nome = request.getParameter("nome");
-    		String cpf = request.getParameter("cpf");
-    		/*if (Util.isEmptyOrNull(nome) || Util.isEmptyOrNull(cpf)) {
+    		String idProfessor = request.getParameter("professor");
+    		String idDisciplinaGrade = request.getParameter("disciplinaGrade");
+    		if (Util.isEmptyOrNull(idProfessor) || Util.isEmptyOrNull(idDisciplinaGrade)) {
     			request.setAttribute("mensagem", "Todos os dados são obrigatórios para inserir um professor");
-    			request.getRequestDispatcher("./professor.jsp").forward(request, response);
+    			request.getRequestDispatcher("./professorDisciplinaGrade.jsp").forward(request, response);
     			return;
     		}
-    		professorDao.insert(new Professor(nome, cpf));
-    		response.sendRedirect("./listaProfessores.jsp");*/
+    		ProfessorDao professorDao = new ProfessorDao();
+    		DisciplinaGradeDao disciplinaGradeDao = new DisciplinaGradeDao();
+			professorDao .insertPDG(professorDao.findById(Integer.parseInt(idProfessor)), disciplinaGradeDao.findById(Integer.parseInt(idDisciplinaGrade)));
+    		response.sendRedirect("./listaProfessorDisciplinaGrade.jsp");
     	}
 
     	
