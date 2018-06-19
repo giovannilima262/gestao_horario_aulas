@@ -52,7 +52,7 @@ public class InserirProfessorDisciplinaGradeController extends HttpServlet {
     		}
     		ProfessorDao professorDao = new ProfessorDao();
     		DisciplinaGradeDao disciplinaGradeDao = new DisciplinaGradeDao();
-			professorDao .insertPDG(professorDao.findById(Integer.parseInt(idProfessor)), disciplinaGradeDao.findById(Integer.parseInt(idDisciplinaGrade)));
+			professorDao.insertPDG(professorDao.findById(Integer.parseInt(idProfessor)), disciplinaGradeDao.findById(Integer.parseInt(idDisciplinaGrade)));
     		response.sendRedirect("./listaProfessorDisciplinaGrade.jsp");
     	}
 

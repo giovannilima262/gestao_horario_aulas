@@ -110,7 +110,7 @@ public class CursoDao {
 	public ArrayList<String> disciplinaPorCurso() {
 		ArrayList<String> mensagens = new ArrayList<>();
 		try (PreparedStatement stmt = conexao.getConnection().prepareStatement(
-				"SELECT c.nome, count(d) FROM curso as c inner join disciplina  as d on (c.id = d.id_curso) group by c.nome;");
+				"SELECT c.nome, count(d) FROM curso as c left join disciplina  as d on (c.id = d.id_curso) group by c.nome;");
 				ResultSet rs = stmt.executeQuery();) {
 
 			while (rs.next()) {

@@ -21,9 +21,9 @@
 	<jsp:useBean id="coordenador" scope="session"
 		class="br.com.gestao_horario_aulas.model.Coordenador"></jsp:useBean>
 
-	<jsp:useBean id="gradeController" scope="page"
-		class="br.com.gestao_horario_aulas.controller.InserirGradeController"></jsp:useBean>
-
+	<jsp:useBean id="horarioController" scope="page"
+		class="br.com.gestao_horario_aulas.controller.InserirHorarioController"></jsp:useBean>
+		
 	<nav>
 	<div style="background: #3a3a3a;" class="nav-wrapper">
 		<img style="height: 100%; margin-left: 25px; margin-right: 25px;"
@@ -76,55 +76,93 @@
 			</div>
 		</div>
 		<div>
-			<form class="col s3" action="inserirGrade" method="POST">
-				<div class="row">
-					<div class="input-field col s3">
-						<input required="required" name="nome" id="nome" type="text"
-							class="validate"> <label for="nome">Nome</label>
-					</div>
-				</div>
+			<form class="col s3" action="inserirHorario" method="POST">
 				<div class="col">
-					<label>Curso</label>
+					<label>Sala</label>
 
 				</div>
 				<div class="row">
 					<div class="input-field col s3">
-						<select required="required" name="curso" class="browser-default">
+						<select required="required" name="sala" class="browser-default">
 							<option value="" disabled selected>Selecione</option>
-							<c:forEach var="curso" items="${gradeController.getCursos()}">
-								<option value="${curso.getId()}">${curso.getNome()}</option>
+							<c:forEach var="sala" items="${horarioController.getSalas()}">
+								<option value="${sala.getId()}">${sala.getNome()}</option>
 							</c:forEach>
 						</select>
 
 					</div>
 				</div>
 				<div class="col">
-					<label>Semestre de Início</label>
+					<label>Professor</label>
 
 				</div>
 				<div class="row">
 					<div class="input-field col s3">
-						<select required="required" name="ano"
+						<select required="required" name="professor" id="professor"
+							class="browser-default" onchange="seila(this.value)">
+							<option value="" disabled selected>Selecione</option>
+							<c:forEach var="professor" items="${horarioController.getProfessores()}">
+								<option value="${professor.getId()}">${professor.getNome()}</option>
+							</c:forEach>
+						</select>
+
+					</div>
+				</div>
+				
+				<div class="col">
+				<label>Disciplina</label>
+
+				</div>
+				<div class="row">
+					<div class="input-field col s3">
+						<select required="required" name="Disciplina" id="Disciplina"
 							class="browser-default">
 							<option value="" disabled selected>Selecione</option>
-							<c:forEach var="cont" items="${gradeController.getSemestres()}">
-								<option value="${cont}">${cont}</option>
+							<c:forEach var="disciplina" items="${disciplinas}">
+								<option value="${disciplina.getId()}">${disciplina.getDisciplina().getNome()}</option>
 							</c:forEach>
 						</select>
 
 					</div>
-					
+				
+				</div>
+				
+				<div class="col">
+				<label>Horario</label>
+
+				</div>
+				<div class="row">
 					<div class="input-field col s3">
-						<select required="required" name="semestre"
+						<select required="required" name="hora"
 							class="browser-default">
 							<option value="" disabled selected>Selecione</option>
 							<option value="1">1</option>
 							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
 						</select>
 
 					</div>
 				</div>
+				
+				<div class="col">
+				<label>Dia</label>
 
+				</div>
+				<div class="row">
+					<div class="input-field col s3">
+						<select required="required" name="dia"
+							class="browser-default">
+							<option value="" disabled selected>Selecione</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+						</select>
+
+					</div>
+				</div>
+				
 				<div class="row">
 					<button class="btn waves-effect waves-light" type="submit"
 						name="action">Cadastrar</button>
@@ -141,6 +179,19 @@
 	<!--JavaScript at end of body for optimized loading-->
 	<script type="text/javascript"
 		src="../../materialize/js/materialize.min.js"></script>
+		
+	<script>function seila(x){
+		  var xhttp;    
+		  xhttp = new XMLHttpRequest();
+		  xhttp.onreadystatechange = function() {
+		    if (this.readyState == 4 && this.status == 200) {
+		      document.getElementById("Disciplina").innerHTML = this.responseText;
+		    }
+		  };
+		  xhttp.open("GET", "inserirHorario?ac=a&id="+x, true);
+		  xhttp.send();
+		}</script>
+	
 
 </body>
 </html>

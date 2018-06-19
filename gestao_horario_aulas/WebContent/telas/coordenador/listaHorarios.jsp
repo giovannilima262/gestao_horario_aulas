@@ -85,7 +85,17 @@
 										<th></th>
 										<th></th>
 									</tr>
-
+									
+									<c:forEach var="aula" items="${horarioController.getAulas()}">
+										<tr>
+											<td>${aula.getHorario()}</td>
+											<td>${aula.getDia()}</td>
+											<td>${aula.getDisciplina().getNome()}</td>
+											<td>${aula.getProfessor().getNome()}</td>
+											<td>${aula.getSala().getNome()}</td>
+											<td><a href="inserirHorario?ac=del&id=${aula.getId()}">delete</a></td>
+										</tr>
+									</c:forEach>
 								
 								</table>
 								<p>${mensagemErro}</p>

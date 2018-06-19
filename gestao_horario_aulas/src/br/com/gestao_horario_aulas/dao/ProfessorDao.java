@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gestao_horario_aulas.model.Disciplina;
 import br.com.gestao_horario_aulas.model.DisciplinaGrade;
 import br.com.gestao_horario_aulas.model.Professor;
 import br.com.gestao_horario_aulas.util.Conexao;
@@ -42,6 +43,29 @@ public class ProfessorDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public ArrayList<DisciplinaGrade> getDisciplinaPorProfessor(Integer id) {
+		ArrayList<DisciplinaGrade> disciplinas = new ArrayList<>();
+		try (PreparedStatement stmt = conexao.getConnection().prepareStatement(
+				"SELECT d.id as disciplina_id, dg.id as disciplina_grade_id, d.nome as disciplina_nome FROM professor_disciplina_grade as pdg "
+						+ "inner join disciplina_grade as dg on (dg.id = pdg.id_disciplina_grade) "
+						+ "inner join professor as p on (pdg.id_professor = " + id + ") "
+						+ "inner join disciplina as d on (d.id = dg.id_disciplina); ");
+				ResultSet rs = stmt.executeQuery()) {
+			while (rs.next()) {
+				DisciplinaGrade disciplinaGrade = new DisciplinaGrade();
+				Disciplina disciplina = new Disciplina();
+				disciplina.setId(rs.getInt("disciplina_id"));
+				disciplina.setNome(rs.getString("disciplina_nome"));
+				disciplinaGrade.setDisciplina(disciplina);
+				disciplinaGrade.setId(rs.getInt("disciplina_grade_id"));
+				disciplinas.add(disciplinaGrade);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return disciplinas;
 	}
 	
 	public void update(Professor professor) {
