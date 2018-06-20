@@ -54,7 +54,6 @@
 			<li><a href="listaCoordenadores.jsp">Coordenadores</a></li>
 			<li><a href="listaHorarios.jsp">Horários</a></li>
 			<li><a href="estatisticas.jsp">Estatistica</a></li>
-			<li><a href="horario.jsp">Horário</a></li>
 		</ul>
 	</div>
 	</nav>
@@ -72,7 +71,7 @@
 		<div class="fc-toolbar">
 
 			<div class="fc-center">
-				<h2>Horário // TODO Falta o incluir do horário</h2>
+				<h2>Horário</h2>
 			</div>
 		</div>
 		<div>
@@ -136,10 +135,12 @@
 						<select required="required" name="hora"
 							class="browser-default">
 							<option value="" disabled selected>Selecione</option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
+							<option value="1">Segunda</option>
+							<option value="2">Terça</option>
+							<option value="3">Quarta</option>
+							<option value="4">Quinta</option>
+							<option value="5">Sexta</option>
+							<option value="6">Sabado</option>
 						</select>
 
 					</div>
@@ -154,10 +155,11 @@
 						<select required="required" name="dia"
 							class="browser-default">
 							<option value="" disabled selected>Selecione</option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
+							<option value="1">07:00 - 08:15</option>
+							<option value="2">08:25 - 09:35</option>
+							<option value="3">09:45 - 10:00</option>
+							<option value="4">10:15 - 11:30</option>
+							<option value="5">11:45 - 12:40</option>
 						</select>
 
 					</div>

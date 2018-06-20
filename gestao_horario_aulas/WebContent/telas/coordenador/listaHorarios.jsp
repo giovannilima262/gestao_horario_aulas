@@ -53,7 +53,6 @@
 			<li><a href="listaCoordenadores.jsp">Coordenadores</a></li>
 			<li><a href="listaHorarios.jsp">Horários</a></li>
 			<li><a href="estatisticas.jsp">Estatistica</a></li>
-			<li><a href="horario.jsp">Horário</a></li>
 		</ul>
 	</div>
 	</nav>
@@ -88,8 +87,8 @@
 									
 									<c:forEach var="aula" items="${horarioController.getAulas()}">
 										<tr>
-											<td>${aula.getHorario()}</td>
-											<td>${aula.getDia()}</td>
+											<td>${aula.getHorario().getDescricao()}</td>
+											<td>${aula.getDia().getDescricao()}</td>
 											<td>${aula.getDisciplina().getNome()}</td>
 											<td>${aula.getProfessor().getNome()}</td>
 											<td>${aula.getSala().getNome()}</td>

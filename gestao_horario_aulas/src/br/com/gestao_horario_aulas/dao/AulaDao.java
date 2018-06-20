@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import br.com.gestao_horario_aulas.enums.DiaSemanaEnum;
+import br.com.gestao_horario_aulas.enums.HoraEnumInicio;
 import br.com.gestao_horario_aulas.model.Aula;
 import br.com.gestao_horario_aulas.util.Conexao;
 
@@ -31,8 +33,8 @@ public class AulaDao {
 								+ aula.getProfessor().getId() + " AND id_disciplina_grade = " + aula.getDisciplina().getId()
 								+ ";");
 				ResultSet rs = stm.executeQuery();) {
-			stmt.setInt(1, aula.getDia());
-			stmt.setInt(2, aula.getHorario());
+			stmt.setInt(1, aula.getDia().getCodigo());
+			stmt.setInt(2, aula.getHorario().getCodigo());
 			stmt.setInt(3, aula.getSala().getId());
 			int id = 0;
 			while (rs.next()) {
@@ -53,8 +55,8 @@ public class AulaDao {
 				ResultSet rs = stmt.executeQuery();) {
 			while (rs.next()) {
 				Aula aula = new Aula();
-				aula.setDia(rs.getInt("dia_semana"));
-				aula.setHorario(rs.getInt("horario"));
+				aula.setDia(DiaSemanaEnum.getDiaEnum(rs.getInt("dia_semana")));
+				aula.setHorario(HoraEnumInicio.getHoraEnum(rs.getInt("horario")));
 				aula.setId(rs.getInt("id"));
 				aula.setDisciplina(disciplinaDao.findById(rs.getInt("disciplina")));
 				aula.setProfessor(professorDao.findById(rs.getInt("professor")));
@@ -73,8 +75,8 @@ public class AulaDao {
 		try (PreparedStatement stmt = conexao.getConnection().prepareStatement("Select a.id, pdg.id_professor as professor, dg.id_disciplina as disciplina, a.horario as horario, a.dia_semana as dia_semana, a.id_sala as sala from aula as a inner join professor_disciplina_grade as pdg on (a.id_professor_disciplina_grade = pdg.id) inner join disciplina_grade as dg on(pdg.id_disciplina_grade = dg.id) where a.id="+id+";");
 				ResultSet rs = stmt.executeQuery();) {
 			while (rs.next()) {
-				aula.setDia(rs.getInt("dia_semana"));
-				aula.setHorario(rs.getInt("horario"));
+				aula.setDia(DiaSemanaEnum.getDiaEnum(rs.getInt("dia_semana")));
+				aula.setHorario(HoraEnumInicio.getHoraEnum(rs.getInt("horario")));
 				aula.setId(rs.getInt("id"));
 				aula.setDisciplina(disciplinaDao.findById(rs.getInt("disciplina")));
 				aula.setProfessor(professorDao.findById(rs.getInt("professor")));

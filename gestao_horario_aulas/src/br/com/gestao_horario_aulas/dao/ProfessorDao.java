@@ -107,7 +107,7 @@ public class ProfessorDao {
 			while (rs.next()) {
 				professor.setId(rs.getInt("id"));
 				professor.setNome(rs.getString("nome"));
-				professor.setNome(rs.getString("cpf"));
+				professor.setCpf(rs.getString("cpf"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

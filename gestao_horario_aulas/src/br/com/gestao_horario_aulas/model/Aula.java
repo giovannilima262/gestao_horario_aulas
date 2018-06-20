@@ -1,12 +1,15 @@
 package br.com.gestao_horario_aulas.model;
 
+import br.com.gestao_horario_aulas.enums.DiaSemanaEnum;
+import br.com.gestao_horario_aulas.enums.HoraEnumInicio;
+
 public class Aula {
 	private Integer id;
 	private Disciplina disciplina;
 	private Professor professor;
 	private Sala sala;
-	private Integer dia;
-	private Integer horario;
+	private DiaSemanaEnum dia;
+	private HoraEnumInicio horario;
 	private Integer quantidadeAulas;
 
 	public Aula(Disciplina materia) {
@@ -14,8 +17,8 @@ public class Aula {
 	}
 	
 	public Aula(Integer hora, Integer dia, Professor professor, Disciplina disciplina, Sala sala){
-		this.horario = hora;
-		this.dia = dia;
+		this.horario = HoraEnumInicio.getHoraEnum(hora);
+		this.dia = DiaSemanaEnum.getDiaEnum(dia);
 		this.professor = professor;
 		this.disciplina = disciplina;
 		this.sala = sala;
@@ -57,19 +60,19 @@ public class Aula {
 		this.sala = sala;
 	}
 
-	public Integer getDia() {
+	public DiaSemanaEnum getDia() {
 		return dia;
 	}
 
-	public void setDia(Integer dia) {
+	public void setDia(DiaSemanaEnum dia) {
 		this.dia = dia;
 	}
 
-	public Integer getHorario() {
+	public HoraEnumInicio getHorario() {
 		return horario;
 	}
 
-	public void setHorario(Integer horario) {
+	public void setHorario(HoraEnumInicio horario) {
 		this.horario = horario;
 	}
 
