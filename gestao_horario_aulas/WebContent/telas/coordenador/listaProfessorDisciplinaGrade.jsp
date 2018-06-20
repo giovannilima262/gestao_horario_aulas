@@ -21,8 +21,8 @@
 	<jsp:useBean id="coordenador" scope="session"
 		class="br.com.gestao_horario_aulas.model.Coordenador"></jsp:useBean>
 		
-	<jsp:useBean id="professorController" scope="page"
-		class="br.com.gestao_horario_aulas.controller.InserirProfessorController"></jsp:useBean>
+	<jsp:useBean id="professorDisciplinaGradeController" scope="page"
+		class="br.com.gestao_horario_aulas.controller.InserirProfessorDisciplinaGradeController"></jsp:useBean>
 
 	<nav>
 	<div style="background: #3a3a3a;" class="nav-wrapper">
@@ -83,14 +83,15 @@
 										<th></th>
 										<th></th>
 									</tr>
-									<!--<c:forEach var="professor" items="${professorController.getProfessores()}">
+									<c:forEach var="professor" items="${professorDisciplinaGradeController.getProfessorDisciplinaGrade()}">
 									<tr>
-										<td>${professor.getNome()}</td>
-										<td>${professor.getCpf()}</td>
+										<td>${professor.getProfessor().getNome()}</td>
+										<td>${professor.getDisciplinaGrade().getDisciplina().getNome()}</td>
+										<td>${professor.getDisciplinaGrade().getGrade().getNome()}</td>
 										<td></td>
-										<td><a href="inserirProfessor?id=${professor.getId()}" >delete</a></td>										
+										<td><a href="inserirProfessorDisciplinaGrade?id=${professor.getId()}" >delete</a></td>										
 									</tr>
-									</c:forEach>-->
+									</c:forEach>
 								</table>
 								<p>${mensagemErro}</p>
 							</div></td>

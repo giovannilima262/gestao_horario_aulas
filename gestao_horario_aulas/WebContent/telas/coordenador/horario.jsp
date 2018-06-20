@@ -60,7 +60,7 @@
 	<nav style="background: #3a3a3a;">
 	<div class="nav-wrapper" style="margin-left: 50px;">
 		<div class="col s12">
-			<a href="listaGrades.jsp" class="breadcrumb">Horário</a><a
+			<a href="listaHorarios.jsp" class="breadcrumb">Horário</a><a
 				class="breadcrumb">Inserir</a>
 
 		</div>
@@ -187,12 +187,21 @@
 		  xhttp = new XMLHttpRequest();
 		  xhttp.onreadystatechange = function() {
 		    if (this.readyState == 4 && this.status == 200) {
-		      document.getElementById("Disciplina").innerHTML = this.responseText;
+		        document.getElementById("Disciplina").innerHTML = this.responseText;
+		    	var array = JSON.parse(this.responseText);
+		    	var x = document.getElementById("Disciplina");
+		    	var option = document.createElement("option");
+		    	for (var i = 0; i < array.length; i++) {
+		    		option.value = array[i].id;
+			    	option.text = array[i].disciplina.nome;
+				}
+		    	x.add(option);
 		    }
 		  };
 		  xhttp.open("GET", "inserirHorario?ac=a&id="+x, true);
 		  xhttp.send();
-		}</script>
+		}
+	</script>
 	
 
 </body>

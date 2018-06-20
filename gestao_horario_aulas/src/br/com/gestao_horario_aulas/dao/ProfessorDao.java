@@ -8,7 +8,9 @@ import java.util.List;
 
 import br.com.gestao_horario_aulas.model.Disciplina;
 import br.com.gestao_horario_aulas.model.DisciplinaGrade;
+import br.com.gestao_horario_aulas.model.Grade;
 import br.com.gestao_horario_aulas.model.Professor;
+import br.com.gestao_horario_aulas.model.ProfessorDisciplinaGrade;
 import br.com.gestao_horario_aulas.util.Conexao;
 
 public class ProfessorDao {
@@ -66,6 +68,38 @@ public class ProfessorDao {
 			e.printStackTrace();
 		}
 		return disciplinas;
+	}
+	
+	public ArrayList<ProfessorDisciplinaGrade> disciplinaProfessorDGList() {
+		ArrayList<ProfessorDisciplinaGrade> professorDisciplinaGrades = new ArrayList<>();
+		try (PreparedStatement stmt = conexao.getConnection().prepareStatement(
+				"SELECT g.nome as nomegrade, pdg.id as id, p.nome as professor, d.id as disciplina_id, dg.id as disciplina_grade_id, d.nome as disciplina_nome FROM professor_disciplina_grade as pdg "
+						+ "inner join disciplina_grade as dg on (dg.id = pdg.id_disciplina_grade) "
+						+ "inner join professor as p on (pdg.id_professor = p.id) "
+						+ "inner join grade as g on (dg.id_grade = g.id) "
+						+ "inner join disciplina as d on (d.id = dg.id_disciplina); ");
+				ResultSet rs = stmt.executeQuery()) {
+			while (rs.next()) {
+				DisciplinaGrade disciplinaGrade = new DisciplinaGrade();
+				Disciplina disciplina = new Disciplina();
+				Grade grade = new Grade();
+				grade.setNome(rs.getString("nomegrade"));
+				disciplina.setId(rs.getInt("disciplina_id"));
+				disciplina.setNome(rs.getString("disciplina_nome"));
+				disciplinaGrade.setGrade(grade);
+				disciplinaGrade.setDisciplina(disciplina);
+				disciplinaGrade.setId(rs.getInt("disciplina_grade_id"));
+				ProfessorDisciplinaGrade professorDisciplinaGrade = new ProfessorDisciplinaGrade();
+				professorDisciplinaGrade.setDisciplinaGrade(disciplinaGrade);
+				Professor professor = new Professor();
+				professor.setNome(rs.getString("professor"));
+				professorDisciplinaGrade.setProfessor(professor);
+				professorDisciplinaGrades.add(professorDisciplinaGrade);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return professorDisciplinaGrades;
 	}
 	
 	public void update(Professor professor) {

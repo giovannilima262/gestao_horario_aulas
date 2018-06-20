@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 import br.com.gestao_horario_aulas.dao.AulaDao;
 import br.com.gestao_horario_aulas.dao.ProfessorDao;
 import br.com.gestao_horario_aulas.dao.SalaDao;
@@ -51,9 +53,7 @@ public class InserirHorarioController extends HttpServlet {
 		}else{
 			ArrayList<DisciplinaGrade> disciplinas = new ArrayList<>();
 			disciplinas = professorDao.getDisciplinaPorProfessor(Integer.parseInt(id));
-			req.setAttribute("disciplinas", disciplinas);
-			req.getRequestDispatcher("./horario.jsp").forward(req, resp);
-			
+			resp.getWriter().append(new Gson().toJson(disciplinas));
 		}
 	}
 

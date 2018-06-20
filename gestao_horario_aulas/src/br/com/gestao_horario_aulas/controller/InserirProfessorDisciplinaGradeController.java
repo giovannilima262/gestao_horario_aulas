@@ -1,6 +1,7 @@
 package br.com.gestao_horario_aulas.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import br.com.gestao_horario_aulas.dao.DisciplinaGradeDao;
 import br.com.gestao_horario_aulas.dao.ProfessorDao;
+import br.com.gestao_horario_aulas.model.ProfessorDisciplinaGrade;
 import br.com.gestao_horario_aulas.util.Util;
 
 /**
@@ -18,12 +20,17 @@ import br.com.gestao_horario_aulas.util.Util;
 @WebServlet("/telas/coordenador/InserirProfessorDisciplinaGrade")
 public class InserirProfessorDisciplinaGradeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    
+	private List<ProfessorDisciplinaGrade> professorDisciplinaGrade;
+	private ProfessorDao professorDao = new ProfessorDao();;
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
     public InserirProfessorDisciplinaGradeController() {
         super();
+
+        professorDisciplinaGrade = professorDao.disciplinaProfessorDGList();
         // TODO Auto-generated constructor stub
     }
 
@@ -50,14 +57,23 @@ public class InserirProfessorDisciplinaGradeController extends HttpServlet {
     			request.getRequestDispatcher("./professorDisciplinaGrade.jsp").forward(request, response);
     			return;
     		}
-    		ProfessorDao professorDao = new ProfessorDao();
+    		
     		DisciplinaGradeDao disciplinaGradeDao = new DisciplinaGradeDao();
 			professorDao.insertPDG(professorDao.findById(Integer.parseInt(idProfessor)), disciplinaGradeDao.findById(Integer.parseInt(idDisciplinaGrade)));
     		response.sendRedirect("./listaProfessorDisciplinaGrade.jsp");
     	}
 
-    	
-    
+
+
+		public List<ProfessorDisciplinaGrade> getProfessorDisciplinaGrade() {
+			return professorDisciplinaGrade;
+		}
+
+
+
+		public void setProfessorDisciplinaGrade(List<ProfessorDisciplinaGrade> professorDisciplinaGrade) {
+			this.professorDisciplinaGrade = professorDisciplinaGrade;
+		}
 
 
 }
