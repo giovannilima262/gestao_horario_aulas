@@ -3,6 +3,7 @@
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/teste"/>
         <property name="context-root" value="gestao_horario_aulas"/>
         <property name="java-output-path" value="/gestao_horario_aulas/build/classes"/>
     </wb-module>

@@ -21,24 +21,28 @@ public class CoordenadorDao {
 		conexao.closeConnection();
 	}
 
-	public void insert(Coordenador coordenador) {
+	public boolean insert(Coordenador coordenador) {
 		try (PreparedStatement stmt = conexao.getConnection()
 				.prepareStatement("INSERT INTO coordenador (nome) VALUES (?);");) {
 			stmt.setString(1, coordenador.getNome());
 			stmt.execute();
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return false;
 		} 
 	}
 	
-	public void update(Coordenador coordenador) {
+	public boolean update(Coordenador coordenador) {
 		try (PreparedStatement stmt = conexao.getConnection()
 				.prepareStatement("UPDATE coordenador SET nome = ? WHERE id = ?;");) {
 			stmt.setString(1, coordenador.getNome());
 			stmt.setInt(2, coordenador.getId());
 			stmt.execute();
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return false;
 		} 
 	}
 
